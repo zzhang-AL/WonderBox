@@ -6,12 +6,6 @@ import SwiftUI
 @MainActor
 final class AppModel: ObservableObject {
     @Published var selection: AppSection? = .overview
-    @Published private(set) var snapshot = MetricSnapshot()
-    @Published private(set) var processorHistory = ProcessorHistory()
-    @Published private(set) var isRefreshingMetrics = false
-    @Published private(set) var cpuHistory: [Double] = Array(repeating: 0, count: 30)
-    @Published private(set) var gpuHistory: [Double] = Array(repeating: 0, count: 30)
-    @Published private(set) var memoryHistory: [Double] = Array(repeating: 0, count: 30)
     @Published private(set) var fans: [FanReading] = []
     @Published private(set) var isRefreshingFans = false
     @Published private(set) var hasReadFans = false
@@ -63,14 +57,16 @@ final class AppModel: ObservableObject {
     let sleepPreventer = SleepPreventer()
     let memoryOptimizer = MemoryOptimizer()
     let processorMonitor = ProcessorMonitor()
+    let metrics = MetricsStore()
+    let compositor = CompositorMonitor()
+    let compositorProbe = CompositorProbe()
+    let networkActivity = NetworkActivityMonitor()
     let sectionRefresh = SectionRefreshController()
     let systemInfo = SystemInformation.current
     let updater = UpdateController()
     let diagnostics = DiagnosticsController()
 
     private var monitorTask: Task<Void, Never>?
-    private var metricsRefreshTask: Task<Void, Never>?
-    private var previousCounters: SystemCounters?
     private var relatedFileScanID = UUID()
     private var applicationSizeTask: Task<Void, Never>?
     private var applicationSizeScanID = UUID()
@@ -171,19 +167,29 @@ final class AppModel: ObservableObject {
             DiagnosticLogger.shared.record(.appStarted)
         }
         updater.checkAutomaticallyIfNeeded()
+        if UserDefaults.standard.object(forKey: CompositorMonitor.backgroundDetectionKey) as? Bool ?? true {
+            compositor.start()
+        }
     }
 
     func startMonitoring() {
+        compositor.start()
         guard monitorTask == nil else { return }
         isMonitoring = true
         monitorTask = Task { [weak self] in
             guard let self else { return }
             while !Task.isCancelled {
-                await self.refreshMetrics()
+                // Nothing on screen: skip sampling rather than re-render views nobody sees, and
+                // check again soon so the window is current as soon as it reappears.
+                guard self.hasVisibleWindow else {
+                    try? await Task.sleep(for: .seconds(1))
+                    continue
+                }
+                await self.metrics.refresh()
                 switch self.selection {
                 case .fan: await self.refreshFans()
                 case .memory: await self.memoryOptimizer.refreshApplications()
-                case .cpu, .gpu: await self.processorMonitor.refresh()
+                case .cpu, .gpu, .battery: await self.processorMonitor.refresh()
                 default: break
                 }
                 try? await Task.sleep(for: .seconds(3))
@@ -195,31 +201,27 @@ final class AppModel: ObservableObject {
         monitorTask?.cancel()
         monitorTask = nil
         isMonitoring = false
+        // Spike detection is cheap enough to keep running in the background unless turned off.
+        if !(UserDefaults.standard.object(forKey: CompositorMonitor.backgroundDetectionKey) as? Bool ?? true) {
+            compositor.stop()
+        }
     }
 
+    // Live metrics live in `metrics`; these forward for callers that only read them once.
+    var snapshot: MetricSnapshot { metrics.snapshot }
+    var processorHistory: ProcessorHistory { metrics.processorHistory }
+    var isRefreshingMetrics: Bool { metrics.isRefreshing }
+
+    /// Explicit refreshes (buttons, after cleanups) also re-read disk space.
     func refreshMetrics() async {
-        if let metricsRefreshTask { await metricsRefreshTask.value; return }
-        isRefreshingMetrics = true
-        let task = Task { await sampleMetrics() }
-        metricsRefreshTask = task
-        defer { metricsRefreshTask = nil; isRefreshingMetrics = false }
-        await task.value
+        await metrics.refresh(refreshDisk: true)
     }
 
-    private func sampleMetrics() async {
-        let previous = previousCounters
-        let sample = await Task.detached(priority: .utility) {
-            SystemMonitor.sample(previous: previous)
-        }.value
-        previousCounters = sample.counters
-        snapshot = sample.snapshot
-        processorHistory.append(sample.snapshot)
-        cpuHistory.append(sample.snapshot.cpuUsage)
-        gpuHistory.append(sample.snapshot.gpuUsage ?? 0)
-        memoryHistory.append(sample.snapshot.memoryFraction)
-        cpuHistory = Array(cpuHistory.suffix(60))
-        gpuHistory = Array(gpuHistory.suffix(60))
-        memoryHistory = Array(memoryHistory.suffix(60))
+    /// The main window or the menu bar panel is on screen. The status item's own window does not count.
+    private var hasVisibleWindow: Bool {
+        !NSApp.isHidden && NSApp.windows.contains {
+            $0.isVisible && $0.occlusionState.contains(.visible) && !$0.className.contains("StatusBar")
+        }
     }
 
     func refreshFans() async {

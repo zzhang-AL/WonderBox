@@ -6,6 +6,8 @@ enum AppSection: String, CaseIterable, Identifiable {
     case memory
     case cpu
     case gpu
+    case network
+    case battery
     case fan
     case awake
     case applications
@@ -21,6 +23,8 @@ enum AppSection: String, CaseIterable, Identifiable {
         case .memory: String(localized: "Memory")
         case .cpu: "CPU"
         case .gpu: "GPU"
+        case .network: String(localized: "Network")
+        case .battery: String(localized: "Battery")
         case .fan: String(localized: "Fan")
         case .awake: String(localized: "Keep Awake")
         case .applications: String(localized: "Uninstaller")
@@ -36,6 +40,8 @@ enum AppSection: String, CaseIterable, Identifiable {
         case .memory: "memorychip"
         case .cpu: "cpu"
         case .gpu: "cube.transparent"
+        case .network: "arrow.up.arrow.down"
+        case .battery: "battery.75percent"
         case .fan: "fan"
         case .awake: "moon.zzz"
         case .applications: "shippingbox"
@@ -51,6 +57,8 @@ enum AppSection: String, CaseIterable, Identifiable {
         case .memory: Color(hex: 0xD4568F)
         case .cpu: Color(hex: 0x3178F6)
         case .gpu: Color(hex: 0x7A67D8)
+        case .network: Color(hex: 0x1E9BB8)
+        case .battery: Color(hex: 0x2FAE5C)
         case .fan: Color(hex: 0x13A58D)
         case .awake: Color(hex: 0xF18B43)
         case .applications: Color(hex: 0x7A67D8)
@@ -75,12 +83,87 @@ struct MetricSnapshot: Equatable, Sendable {
     var thermalState: ProcessInfo.ThermalState = .nominal
     var uptime: TimeInterval = SystemMonitor.uptime()
     var sampledAt = Date()
+    var cpuUser: Double = 0
+    var cpuSystem: Double = 0
+    /// Busy fraction per logical core, in host order (efficiency cores first on Apple Silicon).
+    var cpuCores: [Double] = []
+    var loadAverage: [Double] = []
+    var gpuStatistics: GPUStatistics? = nil
+    /// Physical interfaces and tunnels with traffic, busiest first.
+    var networkInterfaces: [NetworkInterfaceUsage] = []
+    /// Bytes through physical interfaces since boot.
+    var networkReceivedTotal: UInt64 = 0
+    var networkSentTotal: UInt64 = 0
+    var battery: BatteryDetails? = nil
 
     var memoryFraction: Double { memory.usedFraction }
 
     var diskFraction: Double {
         guard diskTotal > 0 else { return 0 }
         return min(1, Double(diskUsed) / Double(diskTotal))
+    }
+}
+
+/// Driver-wide counters from the IOAccelerator's PerformanceStatistics.
+struct GPUStatistics: Equatable, Sendable {
+    var renderer: Double
+    var tiler: Double
+    var memoryInUse: UInt64
+    var memoryAllocated: UInt64
+}
+
+struct NetworkInterfaceUsage: Identifiable, Equatable, Sendable {
+    var id: String { name }
+    let name: String
+    let downPerSecond: UInt64
+    let upPerSecond: UInt64
+    let received: UInt64
+    let sent: UInt64
+
+    /// VPN and proxy tunnels carry traffic that also crosses a physical interface.
+    var isTunnel: Bool { !NetworkInterfaceUsage.isPhysical(name) }
+
+    var kind: String {
+        if name.hasPrefix("utun") || name.hasPrefix("ipsec") || name.hasPrefix("ppp") { return String(localized: "VPN Tunnel") }
+        if name == "en0" { return String(localized: "Wi-Fi or Ethernet") }
+        return String(localized: "Network Interface")
+    }
+
+    static func isPhysical(_ name: String) -> Bool { name.hasPrefix("en") }
+
+    /// Interfaces worth showing: physical ones and tunnels, not loopback or Apple-internal links.
+    static func isRelevant(_ name: String) -> Bool {
+        isPhysical(name) || name.hasPrefix("utun") || name.hasPrefix("ipsec") || name.hasPrefix("ppp")
+    }
+}
+
+struct BatteryDetails: Equatable, Sendable {
+    var level: Double
+    var isCharging: Bool
+    var isPluggedIn: Bool
+    var isFullyCharged: Bool
+    /// Minutes to empty on battery, or to full while charging; nil while macOS is still estimating.
+    var minutesRemaining: Int?
+    var cycleCount: Int?
+    var designCapacity: Int?
+    var fullChargeCapacity: Int?
+    var voltage: Double?
+    /// Watts into (+) or out of (−) the battery.
+    var batteryPower: Double?
+    /// Whole-system power draw in watts, from the power controller's telemetry.
+    var systemPower: Double?
+    var adapterWatts: Int?
+    var temperature: Double?
+
+    var health: Double? {
+        guard let full = fullChargeCapacity, let design = designCapacity, design > 0 else { return nil }
+        return min(1, Double(full) / Double(design))
+    }
+
+    var state: String {
+        if isCharging { return String(localized: "Charging") }
+        if isPluggedIn { return isFullyCharged ? String(localized: "Fully charged") : String(localized: "Plugged in, not charging") }
+        return String(localized: "On battery")
     }
 }
 

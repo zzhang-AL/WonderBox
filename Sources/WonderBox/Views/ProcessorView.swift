@@ -12,6 +12,7 @@ struct ProcessorView: View {
 
 private struct ProcessorContent: View {
     @EnvironmentObject private var model: AppModel
+    @EnvironmentObject private var metrics: MetricsStore
     let kind: ProcessorKind
     @ObservedObject var monitor: ProcessorMonitor
     @State private var search = ""
@@ -20,7 +21,8 @@ private struct ProcessorContent: View {
 
     private var applications: [ApplicationProcessorUsage] {
         let ranked = monitor.applications.filter {
-            search.isEmpty || $0.name.localizedCaseInsensitiveContains(search)
+            // Other users' processes (WindowServer) are only sampled for their GPU counters.
+            (kind == .gpu || $0.cpuAvailable) && (search.isEmpty || $0.name.localizedCaseInsensitiveContains(search))
         }.sorted {
             let left = percent($0) ?? -1
             let right = percent($1) ?? -1
@@ -35,10 +37,14 @@ private struct ProcessorContent: View {
                 PageHeader(title: kind.title, subtitle: String(localized: "Live application usage, including helper processes"))
 
                 ProcessorHistoryCard(kind: kind,
-                           value: kind == .cpu ? AppFormatters.percent(model.snapshot.cpuUsage)
-                               : model.snapshot.gpuUsage.map(AppFormatters.percent) ?? "—",
+                           value: kind == .cpu ? AppFormatters.percent(metrics.snapshot.cpuUsage)
+                               : metrics.snapshot.gpuUsage.map(AppFormatters.percent) ?? "—",
                            detail: kind == .cpu ? model.systemInfo.processorName : model.systemInfo.graphicsName,
-                           history: model.processorHistory)
+                           history: metrics.processorHistory)
+
+                if kind == .cpu {
+                    CoreUsagePanel(snapshot: metrics.snapshot, information: model.systemInfo)
+                }
 
                 VStack(alignment: .leading, spacing: 14) {
                     HStack {
@@ -67,7 +73,7 @@ private struct ProcessorContent: View {
                     } else {
                         LazyVStack(spacing: 0) {
                             ForEach(applications) { usage in
-                                row(usage)
+                                EquatableRow(value: usage) { row(usage) }.equatable()
                                 Divider().padding(.leading, 42)
                             }
                         }
@@ -104,11 +110,18 @@ private struct ProcessorContent: View {
 
     private func row(_ usage: ApplicationProcessorUsage) -> some View {
         HStack(spacing: 12) {
-            Image(nsImage: NSWorkspace.shared.icon(forFile: usage.location.path))
+            Image(nsImage: ApplicationIconCache.icon(for: usage.location))
                 .resizable().scaledToFit().frame(width: 30, height: 30)
             VStack(alignment: .leading, spacing: 3) {
                 Text(usage.name).font(.subheadline.weight(.medium)).lineLimit(1)
-                Text("\(usage.processCount) processes").font(.caption).foregroundStyle(.secondary)
+                HStack(spacing: 4) {
+                    Text("\(usage.processCount) processes")
+                    if let watts = usage.powerWatts, watts >= 0.05 {
+                        Text("·")
+                        Text(AppFormatters.watts(watts))
+                    }
+                }
+                .font(.caption).foregroundStyle(.secondary)
             }
             Spacer(minLength: 12)
             ProgressView(value: min(1, (percent(usage) ?? 0) / 100))
@@ -130,5 +143,69 @@ private struct ProcessorContent: View {
             } else { Color.clear.frame(width: 88) }
         }
         .padding(.vertical, 9)
+    }
+}
+
+/// Per-core load split into efficiency and performance clusters, plus the user/system split.
+private struct CoreUsagePanel: View {
+    let snapshot: MetricSnapshot
+    let information: SystemInformation
+
+    private var clusters: [(title: String, cores: ArraySlice<Double>, tint: Color)] {
+        let cores = snapshot.cpuCores
+        let efficiency = min(information.efficiencyCores, cores.count)
+        guard efficiency > 0, information.performanceCores > 0 else {
+            return [(String(localized: "Cores"), cores[...], AppSection.cpu.tint)]
+        }
+        return [
+            (String(localized: "Efficiency cores"), cores.prefix(efficiency), Color(hex: 0x13A58D)),
+            (String(localized: "Performance cores"), cores.dropFirst(efficiency), AppSection.cpu.tint)
+        ]
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .firstTextBaseline) {
+                Text("Cores").font(.headline)
+                Spacer()
+                Text("User \(AppFormatters.percent(snapshot.cpuUser)) · System \(AppFormatters.percent(snapshot.cpuSystem))")
+                    .font(.subheadline).foregroundStyle(.secondary).monospacedDigit()
+                if snapshot.loadAverage.count == 3 {
+                    Text("Load \(snapshot.loadAverage.map { String(format: "%.2f", $0) }.joined(separator: " "))")
+                        .font(.subheadline).foregroundStyle(.secondary).monospacedDigit()
+                        .help("Average number of runnable threads over 1, 5 and 15 minutes")
+                }
+            }
+            if snapshot.cpuCores.isEmpty {
+                Text("Waiting for usage samples…").font(.caption).foregroundStyle(.secondary)
+            } else {
+                ForEach(clusters, id: \.title) { cluster in
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text(cluster.title).font(.subheadline.weight(.medium))
+                            Spacer()
+                            Text(AppFormatters.percent(cluster.cores.reduce(0, +) / Double(max(cluster.cores.count, 1))))
+                                .font(.subheadline.weight(.semibold)).monospacedDigit()
+                        }
+                        HStack(alignment: .bottom, spacing: 6) {
+                            ForEach(Array(cluster.cores.enumerated()), id: \.offset) { _, load in
+                                VStack(spacing: 4) {
+                                    ZStack(alignment: .bottom) {
+                                        RoundedRectangle(cornerRadius: 3).fill(Color.subtleBackground)
+                                        RoundedRectangle(cornerRadius: 3).fill(cluster.tint)
+                                            .frame(height: max(2, 44 * load))
+                                    }
+                                    .frame(height: 44)
+                                    Text(AppFormatters.percent(load))
+                                        .font(.caption2.monospacedDigit()).foregroundStyle(.secondary)
+                                }
+                                .frame(maxWidth: 46)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .appPanel()
     }
 }

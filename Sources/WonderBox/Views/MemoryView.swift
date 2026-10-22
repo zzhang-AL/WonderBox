@@ -19,11 +19,12 @@ private struct MemorySegment: Identifiable {
 
 private struct MemoryContent: View {
     @EnvironmentObject private var model: AppModel
+    @EnvironmentObject private var metrics: MetricsStore
     @ObservedObject var optimizer: MemoryOptimizer
     @State private var forceQuitTarget: ApplicationMemoryUsage?
     @State private var showForceQuitConfirmation = false
 
-    private var memory: MemoryBreakdown { model.snapshot.memory }
+    private var memory: MemoryBreakdown { metrics.snapshot.memory }
 
     private var segments: [MemorySegment] {
         [
@@ -124,7 +125,10 @@ private struct MemoryContent: View {
             Divider()
 
             HStack(alignment: .firstTextBaseline) {
-                Label("Swap used: \(AppFormatters.memory(memory.swapUsed))", systemImage: "arrow.left.arrow.right.circle")
+                Label(memory.swapTotal > 0
+                      ? String(localized: "Swap used: \(AppFormatters.memory(memory.swapUsed)) of \(AppFormatters.memory(memory.swapTotal))")
+                      : String(localized: "Swap used: \(AppFormatters.memory(memory.swapUsed))"),
+                      systemImage: "arrow.left.arrow.right.circle")
                     .font(.subheadline)
                 Spacer()
                 Text("Optimizing asks every app to release its caches; background browser tabs may reload")
@@ -190,7 +194,7 @@ private struct MemoryContent: View {
     private func applicationRow(_ usage: ApplicationMemoryUsage) -> some View {
         let share = fraction(of: usage.footprint)
         return HStack(spacing: 12) {
-            Image(nsImage: NSWorkspace.shared.icon(forFile: usage.location.path))
+            Image(nsImage: ApplicationIconCache.icon(for: usage.location))
                 .resizable()
                 .scaledToFit()
                 .frame(width: 30, height: 30)

@@ -94,6 +94,17 @@ enum AppFormatters {
         "\(Int((fraction * 100).rounded()))%"
     }
 
+    /// For values already in percent (0–100), such as per-app GPU time; one decimal below 10%.
+    static func decimalPercent(_ value: Double) -> String {
+        guard value.isFinite, value >= 0.05 else { return "0%" }
+        return value < 10 ? String(format: "%.1f%%", value) : "\(Int(value.rounded()))%"
+    }
+
+    static func watts(_ value: Double) -> String {
+        guard value.isFinite else { return "—" }
+        return abs(value) < 10 ? String(format: "%.1f W", value) : "\(Int(value.rounded())) W"
+    }
+
     static func duration(_ interval: TimeInterval) -> String {
         // Whole minutes only; seconds would make the overview card flicker.
         Duration.seconds(Int(max(0, interval)) / 60 * 60).formatted(durationStyle)
@@ -108,5 +119,20 @@ enum AppFormatters {
         // "0 KB", not the English-only "Zero KB".
         formatter.allowsNonnumericFormatting = false
         return formatter
+    }
+}
+
+/// App icons are expensive to look up and rows re-render on every sample; cache them by path.
+@MainActor
+enum ApplicationIconCache {
+    private static var icons: [String: NSImage] = [:]
+
+    static func icon(for location: URL) -> NSImage {
+        let path = location.path
+        if let icon = icons[path] { return icon }
+        let icon = NSWorkspace.shared.icon(forFile: path)
+        if icons.count > 400 { icons.removeAll() }
+        icons[path] = icon
+        return icon
     }
 }

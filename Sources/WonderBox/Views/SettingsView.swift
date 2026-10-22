@@ -8,6 +8,8 @@ struct SettingsView: View {
     @AppStorage("accent") private var accent = AccentChoice.ocean.rawValue
     @AppStorage("showMenuBar") private var showMenuBar = true
     @AppStorage("confirmQuitOnClose") private var confirmQuitOnClose = true
+    @AppStorage(CompositorMonitor.backgroundDetectionKey) private var compositorBackgroundDetection = true
+    @AppStorage(CompositorMonitor.notificationsKey) private var compositorNotifications = true
     @StateObject private var launchAtLogin = LaunchAtLoginController()
     @State private var language = AppLanguage.current
     @State private var showLanguageRelaunch = false
@@ -93,6 +95,31 @@ struct SettingsView: View {
                             }
                         }
 
+                    }
+
+                    settingsSection(String(localized: "GPU Monitoring"), symbol: "macwindow.on.rectangle") {
+                        Toggle(isOn: $compositorBackgroundDetection) {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Detect GPU spikes in the background")
+                                Text("Names the app behind a WindowServer GPU jump even while the window is closed; uses well under 1% CPU")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .onChange(of: compositorBackgroundDetection) { _, enabled in
+                            if enabled { model.compositor.start() } else if !model.isMonitoring { model.compositor.stop() }
+                        }
+
+                        Divider()
+
+                        Toggle(isOn: $compositorNotifications) {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Notify when an app drives up GPU usage")
+                                Text("Sends a notification naming the app, since Activity Monitor only shows WindowServer")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
                     }
 
                     settingsSection(String(localized: "Startup"), symbol: "power") {

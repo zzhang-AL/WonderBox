@@ -2,11 +2,12 @@ import SwiftUI
 
 struct OverviewView: View {
     @EnvironmentObject private var model: AppModel
+    @EnvironmentObject private var metrics: MetricsStore
 
     private var health: (title: String, detail: String, color: Color, symbol: String) {
-        switch model.snapshot.thermalState {
+        switch metrics.snapshot.thermalState {
         case .nominal:
-            switch model.snapshot.memory.pressure {
+            switch metrics.snapshot.memory.pressure {
             case .normal: (String(localized: "All Good"), String(localized: "Thermals and resource usage are normal"), .healthy, "checkmark.circle.fill")
             case .warning: (String(localized: "Memory Pressure Elevated"), String(localized: "The system is compressing memory; optimize or quit heavy apps"), .warning, "memorychip")
             case .critical: (String(localized: "Memory Pressure Critical"), String(localized: "Swap is heavily used; free memory now"), .critical, "exclamationmark.triangle.fill")
@@ -28,17 +29,19 @@ struct OverviewView: View {
 
                 healthBanner
 
+                CompositorAlertBanner(compositor: model.compositor, probe: model.compositorProbe)
+
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 215), spacing: 14)], spacing: 14) {
                     MetricCard(
                         title: String(localized: "Processor"),
-                        value: AppFormatters.percent(model.snapshot.cpuUsage),
+                        value: AppFormatters.percent(metrics.snapshot.cpuUsage),
                         detail: model.systemInfo.processorName,
                         symbol: "cpu",
                         tint: Color(hex: 0x3178F6),
-                        progress: model.snapshot.cpuUsage,
-                        history: model.cpuHistory
+                        progress: metrics.snapshot.cpuUsage,
+                        history: metrics.cpuHistory
                     )
-                    if let gpuUsage = model.snapshot.gpuUsage {
+                    if let gpuUsage = metrics.snapshot.gpuUsage {
                         MetricCard(
                             title: "GPU",
                             value: AppFormatters.percent(gpuUsage),
@@ -46,52 +49,63 @@ struct OverviewView: View {
                             symbol: "cube.transparent",
                             tint: Color(hex: 0x7A67D8),
                             progress: gpuUsage,
-                            history: model.gpuHistory
+                            history: metrics.gpuHistory,
+                            actionSymbol: "macwindow.on.rectangle",
+                            actionHelp: String(localized: "Go to GPU and window compositing"),
+                            action: { model.selection = .gpu }
                         )
                     }
                     MetricCard(
                         title: String(localized: "Memory"),
-                        value: AppFormatters.percent(model.snapshot.memoryFraction),
-                        detail: String(localized: "\(AppFormatters.memory(model.snapshot.memory.used)) used · \(AppFormatters.memory(model.snapshot.memory.compressed)) compressed"),
+                        value: AppFormatters.percent(metrics.snapshot.memoryFraction),
+                        detail: String(localized: "\(AppFormatters.memory(metrics.snapshot.memory.used)) used · \(AppFormatters.memory(metrics.snapshot.memory.compressed)) compressed"),
                         symbol: "memorychip",
                         tint: AppSection.memory.tint,
-                        progress: model.snapshot.memoryFraction,
-                        history: model.memoryHistory,
+                        progress: metrics.snapshot.memoryFraction,
+                        history: metrics.memoryHistory,
                         actionSymbol: "wand.and.stars",
                         actionHelp: String(localized: "Go to memory optimization"),
                         action: { model.selection = .memory }
                     )
                     MetricCard(
                         title: String(localized: "Disk"),
-                        value: AppFormatters.percent(model.snapshot.diskFraction),
-                        detail: String(localized: "\(AppFormatters.bytes(model.snapshot.diskTotal - min(model.snapshot.diskTotal, model.snapshot.diskUsed))) available"),
+                        value: AppFormatters.percent(metrics.snapshot.diskFraction),
+                        detail: String(localized: "\(AppFormatters.bytes(metrics.snapshot.diskTotal - min(metrics.snapshot.diskTotal, metrics.snapshot.diskUsed))) available"),
                         symbol: "internaldrive",
                         tint: Color(hex: 0xE66756),
-                        progress: model.snapshot.diskFraction,
+                        progress: metrics.snapshot.diskFraction,
                         actionSymbol: "magnifyingglass",
                         actionHelp: String(localized: "Scan disk"),
                         action: { model.selection = .storage }
                     )
                     MetricCard(
                         title: String(localized: "Network"),
-                        value: AppFormatters.rate(model.snapshot.networkDownPerSecond),
-                        detail: String(localized: "Upload \(AppFormatters.rate(model.snapshot.networkUpPerSecond))"),
+                        value: AppFormatters.rate(metrics.snapshot.networkDownPerSecond),
+                        detail: String(localized: "Upload \(AppFormatters.rate(metrics.snapshot.networkUpPerSecond))"),
                         symbol: "arrow.up.arrow.down",
-                        tint: Color(hex: 0x13A58D)
+                        tint: AppSection.network.tint,
+                        history: metrics.downloadHistory,
+                        historyMaximum: nil,
+                        actionSymbol: "list.bullet",
+                        actionHelp: String(localized: "See traffic by app"),
+                        action: { model.selection = .network }
                     )
-                    if let battery = model.snapshot.batteryLevel {
+                    if let battery = metrics.snapshot.batteryLevel {
                         MetricCard(
                             title: String(localized: "Battery"),
                             value: AppFormatters.percent(battery),
-                            detail: model.snapshot.isCharging ? String(localized: "Charging") : String(localized: "On battery"),
-                            symbol: model.snapshot.isCharging ? "battery.100percent.bolt" : "battery.75percent",
+                            detail: batteryDetail,
+                            symbol: metrics.snapshot.isCharging ? "battery.100percent.bolt" : "battery.75percent",
                             tint: battery < 0.2 ? .critical : .healthy,
-                            progress: battery
+                            progress: battery,
+                            actionSymbol: "bolt",
+                            actionHelp: String(localized: "See battery health and energy use"),
+                            action: { model.selection = .battery }
                         )
                     }
                     MetricCard(
                         title: String(localized: "Uptime"),
-                        value: AppFormatters.duration(model.snapshot.uptime),
+                        value: AppFormatters.duration(metrics.snapshot.uptime),
                         detail: model.systemInfo.modelIdentifier,
                         symbol: "clock.arrow.circlepath",
                         tint: Color(hex: 0xE1A127)
@@ -104,6 +118,13 @@ struct OverviewView: View {
             .frame(maxWidth: 1_160, alignment: .leading)
         }
         .sectionRefresh(.overview, busy: model.isRefreshingMetrics) { await model.refreshMetrics() }
+    }
+
+    private var batteryDetail: String {
+        let state = metrics.snapshot.battery?.state
+            ?? (metrics.snapshot.isCharging ? String(localized: "Charging") : String(localized: "On battery"))
+        guard let power = metrics.snapshot.battery?.systemPower else { return state }
+        return "\(state) · \(AppFormatters.watts(power))"
     }
 
     private var healthBanner: some View {

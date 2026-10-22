@@ -4,12 +4,62 @@
     "": {
       "shouldTranslate": false
     },
+    "%@ %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ / %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@"
+          }
+        }
+      }
+    },
+    "%@ allocated": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已分配 %@"
+          }
+        }
+      }
+    },
     "%@ available": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "可用 %@"
+          }
+        }
+      }
+    },
+    "%@ is driving up GPU usage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 正在推高 GPU 占用"
+          }
+        }
+      }
+    },
+    "%@ is using about %@ GPU through WindowServer": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ 正通过 WindowServer 占用约 %2$@ GPU"
           }
         }
       }
@@ -34,6 +84,47 @@
         }
       }
     },
+    "%@ received · %@ sent": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接收 %1$@ · 发送 %2$@"
+          }
+        }
+      }
+    },
+    "%@ remaining": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "剩余 %@"
+          }
+        }
+      }
+    },
+    "%@ since startup": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开机以来 %@"
+          }
+        }
+      },
+      "extractionState": "stale"
+    },
+    "%@ until full": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 后充满"
+          }
+        }
+      }
+    },
     "%@ usage over the last 60 seconds": {
       "localizations": {
         "zh-Hans": {
@@ -50,6 +141,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "已用 %@ · 已压缩 %@"
+          }
+        }
+      }
+    },
+    "%@ · also counted on Wi-Fi or Ethernet": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · 同时计入 Wi-Fi 或以太网"
+          }
+        }
+      }
+    },
+    "%@ → %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ → %2$@"
           }
         }
       }
@@ -99,6 +210,16 @@
     },
     "%lld RPM": {
       "shouldTranslate": false
+    },
+    "%lld W power adapter": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld W 电源适配器"
+          }
+        }
+      }
     },
     "%lld apps": {
       "localizations": {
@@ -231,6 +352,16 @@
         }
       }
     },
+    "%lld of %lld mAh": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld / %2$lld mAh"
+          }
+        }
+      }
+    },
     "%lld processes": {
       "localizations": {
         "zh-Hans": {
@@ -288,6 +419,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld%%"
+          }
+        }
+      }
+    },
+    "+%@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+%@"
           }
         }
       }
@@ -461,6 +602,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在分析"
+          }
+        }
+      }
+    },
+    "Another app changed at the same time; the step may be shared": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同一时间还有其他应用发生变化，这次跳变可能由多个应用共同造成"
           }
         }
       }
@@ -829,6 +980,26 @@
         }
       }
     },
+    "Average number of runnable threads over 1, 5 and 15 minutes": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 1、5、15 分钟内可运行线程的平均数"
+          }
+        }
+      }
+    },
+    "Average power over the last few seconds": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近几秒的平均功耗"
+          }
+        }
+      }
+    },
     "Back to the previous folder": {
       "localizations": {
         "zh-Hans": {
@@ -910,12 +1081,32 @@
         }
       }
     },
+    "Baseline": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基础负载"
+          }
+        }
+      }
+    },
     "Battery": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "电池"
+          }
+        }
+      }
+    },
+    "Battery Power": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "电池功率"
           }
         }
       }
@@ -966,6 +1157,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "按物理占用统计，包含子进程与已压缩页面"
+          }
+        }
+      }
+    },
+    "CPU %@ · GPU %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CPU %1$@ · GPU %2$@"
           }
         }
       }
@@ -1040,6 +1241,16 @@
         }
       }
     },
+    "Cancelled; every window is back.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消，所有窗口均已恢复。"
+          }
+        }
+      }
+    },
     "Cannot Read Process Information": {
       "localizations": {
         "zh-Hans": {
@@ -1057,6 +1268,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "无法连接 AppleSMC"
+          }
+        }
+      }
+    },
+    "Charge, health, power draw and energy use by app": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "电量、健康度、功耗，以及各应用的能耗"
           }
         }
       }
@@ -1343,6 +1564,16 @@
         }
       }
     },
+    "Compositor": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "窗口合成"
+          }
+        }
+      }
+    },
     "Compressed": {
       "localizations": {
         "zh-Hans": {
@@ -1413,6 +1644,16 @@
         }
       }
     },
+    "Cores": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "核心"
+          }
+        }
+      }
+    },
     "Could not send the memory-pressure notification to apps": {
       "localizations": {
         "zh-Hans": {
@@ -1449,6 +1690,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "自定"
+          }
+        }
+      }
+    },
+    "Cycle Count": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "循环次数"
           }
         }
       }
@@ -1564,6 +1815,16 @@
       },
       "extractionState": "stale"
     },
+    "Detect GPU spikes in the background": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "后台检测 GPU 突增"
+          }
+        }
+      }
+    },
     "Developer Caches": {
       "localizations": {
         "zh-Hans": {
@@ -1640,6 +1901,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Direct 增强模块"
+          }
+        }
+      }
+    },
+    "Discharging": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "放电中"
           }
         }
       }
@@ -1764,12 +2035,32 @@
         }
       }
     },
+    "Driver Memory": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "驱动内存"
+          }
+        }
+      }
+    },
     "Duration": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "持续时间"
+          }
+        }
+      }
+    },
+    "Efficiency cores": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "能效核心"
           }
         }
       }
@@ -1822,6 +2113,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "请在“自动化”中启用 WonderBox 下的 Finder。此权限与完全磁盘访问、管理员授权分别管理。"
+          }
+        }
+      }
+    },
+    "Energy Users": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "能耗排行"
+          }
+        }
+      }
+    },
+    "Estimated by macOS's per-process energy model for CPU, GPU and other components. System processes owned by other users are not included.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "由 macOS 按进程的能耗模型估算，涵盖 CPU、GPU 等部件。不包含属于其他用户的系统进程。"
+          }
+        }
+      }
+    },
+    "Estimating time remaining…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在估算剩余时间…"
           }
         }
       }
@@ -2099,6 +2420,16 @@
         }
       }
     },
+    "From the administrator snapshot taken at %@; not updated live": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "来自 %@ 的管理员快照，不会实时更新"
+          }
+        }
+      }
+    },
     "Full Disk Access": {
       "localizations": {
         "zh-Hans": {
@@ -2125,6 +2456,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "完整扫描需要完全磁盘访问"
+          }
+        }
+      }
+    },
+    "Fully charged": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已充满"
+          }
+        }
+      }
+    },
+    "GPU Monitoring": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPU 监控"
+          }
+        }
+      }
+    },
+    "GPU Time": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPU 时间"
           }
         }
       }
@@ -2165,6 +2526,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "GitHub 请求频率受限，请稍后重试。"
+          }
+        }
+      }
+    },
+    "Go to GPU and window compositing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前往 GPU 与窗口合成"
           }
         }
       }
@@ -2219,6 +2590,16 @@
         }
       }
     },
+    "Health": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健康度"
+          }
+        }
+      }
+    },
     "Helper declared by the app — may be shared; review before removal": {
       "localizations": {
         "zh-Hans": {
@@ -2230,12 +2611,72 @@
       },
       "extractionState": "stale"
     },
+    "Hide": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐藏"
+          }
+        }
+      }
+    },
+    "Hide the app for a few seconds and measure how much WindowServer drops": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把该应用隐藏几秒，测量 WindowServer 下降多少"
+          }
+        }
+      }
+    },
+    "Hides apps with visible windows one at a time for about three seconds, most suspicious first, and measures how much WindowServer drops. Each app comes back right away; the check stops once one app explains most of the load.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按嫌疑顺序逐个隐藏有可见窗口的应用约 3 秒，测量 WindowServer 下降多少。每个应用测完立即恢复；一旦某个应用能解释大部分负载就停止。"
+          }
+        }
+      }
+    },
+    "Hiding %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在隐藏 %@"
+          }
+        }
+      }
+    },
     "High Load": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "负载较高"
+          }
+        }
+      }
+    },
+    "Idle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空闲"
+          }
+        }
+      }
+    },
+    "Idles around %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空闲时约 %@"
           }
         }
       }
@@ -2337,6 +2778,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "安装包和聊天应用缓存移入废纸篓；其他选中项目直接删除"
+          }
+        }
+      }
+    },
+    "Interfaces": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "网络接口"
           }
         }
       }
@@ -2484,6 +2935,16 @@
         }
       }
     },
+    "Last 3 minutes": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近 3 分钟"
+          }
+        }
+      }
+    },
     "Last 60 seconds": {
       "localizations": {
         "zh-Hans": {
@@ -2604,6 +3065,26 @@
         }
       }
     },
+    "Live traffic by interface and by app": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按网络接口和应用查看实时流量"
+          }
+        }
+      }
+    },
+    "Load %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "负载 %@"
+          }
+        }
+      }
+    },
     "Local log size": {
       "localizations": {
         "zh-Hans": {
@@ -2715,6 +3196,36 @@
       },
       "extractionState": "stale"
     },
+    "Measured by the quick check at %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快速排查于 %@ 测得"
+          }
+        }
+      }
+    },
+    "Measured when it %@ at %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 %2$@ %1$@时测得"
+          }
+        }
+      }
+    },
+    "Measuring app traffic…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在测量应用流量…"
+          }
+        }
+      }
+    },
     "Measuring process memory…": {
       "localizations": {
         "zh-Hans": {
@@ -2741,6 +3252,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在统计关联数据… %lld/%lld"
+          }
+        }
+      }
+    },
+    "Measuring the baseline": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在测量基线"
+          }
+        }
+      }
+    },
+    "Measuring the baseline again": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在复测基线"
           }
         }
       }
@@ -2875,6 +3406,16 @@
         }
       }
     },
+    "Mostly from %@ +%@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主要来自 %1$@ +%2$@"
+          }
+        }
+      }
+    },
     "Move Selected Items to Trash": {
       "localizations": {
         "zh-Hans": {
@@ -2946,12 +3487,32 @@
         }
       }
     },
+    "Names the app behind a WindowServer GPU jump even while the window is closed; uses well under 1% CPU": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即使窗口已关闭，也能指出造成 WindowServer GPU 跳变的应用；CPU 占用远低于 1%"
+          }
+        }
+      }
+    },
     "Network": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "网络"
+          }
+        }
+      }
+    },
+    "Network Interface": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "网络接口"
           }
         }
       }
@@ -2996,12 +3557,52 @@
         }
       }
     },
+    "No active interfaces": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有活动的网络接口"
+          }
+        }
+      }
+    },
+    "No app is adding noticeable load right now.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前没有应用造成明显负载。"
+          }
+        }
+      }
+    },
+    "No app is drawing noticeable power right now.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前没有应用消耗明显的电量。"
+          }
+        }
+      }
+    },
     "No app released a noticeable amount of cache": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "各 App 未释放明显缓存"
+          }
+        }
+      }
+    },
+    "No clear effect": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无明显影响"
           }
         }
       }
@@ -3023,6 +3624,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "未找到项目"
+          }
+        }
+      }
+    },
+    "No noticeable jumps yet. Open or switch to the app you suspect.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂未捕捉到明显跳变。可以打开或切换到怀疑的应用试试。"
           }
         }
       }
@@ -3143,6 +3754,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "当前目录没有可显示项目"
+          }
+        }
+      }
+    },
+    "Notify when an app drives up GPU usage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用推高 GPU 占用时发送通知"
           }
         }
       }
@@ -3339,6 +3960,16 @@
         }
       }
     },
+    "Order: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "顺序：%@"
+          }
+        }
+      }
+    },
     "Other Caches": {
       "localizations": {
         "zh-Hans": {
@@ -3399,6 +4030,36 @@
         }
       }
     },
+    "Per-app GPU time, video memory and the window compositing each app causes": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按应用查看 GPU 时间、显存，以及各应用造成的窗口合成负载"
+          }
+        }
+      }
+    },
+    "Per-app traffic comes from nettop and includes system services. Helper processes are counted with their app.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按应用的流量来自 nettop，包含系统服务。辅助进程计入其所属应用。"
+          }
+        }
+      }
+    },
+    "Per-app traffic is unavailable because nettop could not be started.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法启动 nettop，暂时无法按应用统计流量。"
+          }
+        }
+      }
+    },
     "Performance": {
       "localizations": {
         "zh-Hans": {
@@ -3409,12 +4070,32 @@
         }
       }
     },
+    "Performance cores": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "性能核心"
+          }
+        }
+      }
+    },
     "Permissions and Build": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "权限与构建"
+          }
+        }
+      }
+    },
+    "Plugged in, not charging": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已接电源，未充电"
           }
         }
       }
@@ -3435,6 +4116,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "插件"
+          }
+        }
+      }
+    },
+    "Plus %@ purgeable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "另有 %@ 可清除"
           }
         }
       }
@@ -3499,6 +4190,16 @@
         }
       }
     },
+    "Probably an app that was already running. A quick check hides apps one at a time for a few seconds and stops when it finds the source.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可能来自之前就在运行的应用。快速排查会逐个隐藏应用几秒，找到来源就停止。"
+          }
+        }
+      }
+    },
     "Processor": {
       "localizations": {
         "zh-Hans": {
@@ -3519,12 +4220,32 @@
         }
       }
     },
+    "Quick Check": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快速排查"
+          }
+        }
+      }
+    },
     "Quick Clean": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "一键清理"
+          }
+        }
+      }
+    },
+    "Quick check": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快速排查"
           }
         }
       }
@@ -3663,12 +4384,42 @@
         }
       }
     },
+    "Read…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取…"
+          }
+        }
+      }
+    },
     "Rebuildable cache data from apps and sandboxed containers": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "应用与沙盒容器中可重建的缓存数据"
+          }
+        }
+      }
+    },
+    "Received": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已接收"
+          }
+        }
+      }
+    },
+    "Recent changes": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "变化记录"
           }
         }
       }
@@ -3853,6 +4604,16 @@
         }
       }
     },
+    "Renderer": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "渲染器"
+          }
+        }
+      }
+    },
     "Rescan": {
       "localizations": {
         "zh-Hans": {
@@ -3899,6 +4660,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "温度较高"
+          }
+        }
+      }
+    },
+    "Running on the power adapter": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在使用电源适配器供电"
           }
         }
       }
@@ -3996,6 +4767,26 @@
         }
       }
     },
+    "See battery health and energy use": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看电池健康与能耗"
+          }
+        }
+      }
+    },
+    "See traffic by app": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按应用查看流量"
+          }
+        }
+      }
+    },
     "Segment": {
       "localizations": {
         "zh-Hans": {
@@ -4062,6 +4853,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "选择项目后可在 Finder 中查看或移入废纸篓"
+          }
+        }
+      }
+    },
+    "Sends a notification naming the app, since Activity Monitor only shows WindowServer": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发送通知点名具体应用，因为活动监视器只会显示 WindowServer"
+          }
+        }
+      }
+    },
+    "Sent": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已发送"
           }
         }
       }
@@ -4230,6 +5041,16 @@
         }
       }
     },
+    "Since startup, Wi-Fi and Ethernet": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开机以来，Wi-Fi 与以太网"
+          }
+        }
+      }
+    },
     "Size": {
       "localizations": {
         "zh-Hans": {
@@ -4362,6 +5183,16 @@
         }
       }
     },
+    "Sort by": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "排序方式"
+          }
+        }
+      }
+    },
     "Sort by name": {
       "localizations": {
         "zh-Hans": {
@@ -4418,6 +5249,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "开始保持唤醒"
+          }
+        }
+      }
+    },
+    "Start Quick Check": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始快速排查"
           }
         }
       }
@@ -4532,6 +5373,16 @@
         }
       }
     },
+    "Swap used: %@ of %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已用交换空间：%1$@ / %2$@"
+          }
+        }
+      }
+    },
     "System": {
       "localizations": {
         "zh-Hans": {
@@ -4548,6 +5399,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "系统缓存"
+          }
+        }
+      }
+    },
+    "System Power": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "整机功耗"
           }
         }
       }
@@ -4572,12 +5433,32 @@
         }
       }
     },
+    "System processes such as WindowServer need administrator rights to read once": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WindowServer 等系统进程需要管理员权限读取一次"
+          }
+        }
+      }
+    },
     "Target Speed": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "目标转速"
+          }
+        }
+      }
+    },
+    "Temperature": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "温度"
           }
         }
       }
@@ -4913,6 +5794,16 @@
         }
       }
     },
+    "This Mac has no battery": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这台 Mac 没有电池"
+          }
+        }
+      }
+    },
     "This release has no compatible download.": {
       "localizations": {
         "zh-Hans": {
@@ -4929,6 +5820,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "该版本缺少有效的 SHA-256 校验信息。"
+          }
+        }
+      }
+    },
+    "Tiler %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分块 %@"
           }
         }
       }
@@ -4993,12 +5894,42 @@
         }
       }
     },
+    "Top Network Users": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "流量排行"
+          }
+        }
+      }
+    },
     "Total Usage": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "总占用"
+          }
+        }
+      }
+    },
+    "Totals count physical interfaces only. Traffic through a VPN or proxy tunnel also crosses Wi-Fi or Ethernet, so tunnels are listed but not added twice.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "总量只统计物理接口。经过 VPN 或代理隧道的流量同样会经过 Wi-Fi 或以太网，因此隧道单独列出，但不重复计入。"
+          }
+        }
+      }
+    },
+    "Totals since this page opened": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开此页面以来的累计"
           }
         }
       }
@@ -5093,6 +6024,16 @@
         }
       }
     },
+    "Unknown source": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "来源未明"
+          }
+        }
+      }
+    },
     "Unsaved changes in %@ will be lost.": {
       "localizations": {
         "zh-Hans": {
@@ -5124,6 +6065,16 @@
         }
       }
     },
+    "Up to %lld seconds": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最多约 %lld 秒"
+          }
+        }
+      }
+    },
     "Up to 2 MB, retained for 7 days. Turning logging off clears local logs. Nothing is uploaded automatically.": {
       "localizations": {
         "zh-Hans": {
@@ -5150,6 +6101,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "更新操作已取消。"
+          }
+        }
+      }
+    },
+    "Upload": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上传"
           }
         }
       }
@@ -5194,12 +6155,42 @@
         }
       }
     },
+    "Used by apps · %@ of memory": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用占用 · 占内存 %@"
+          }
+        }
+      }
+    },
+    "User %@ · System %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用户 %1$@ · 系统 %2$@"
+          }
+        }
+      }
+    },
     "Uses macOS Service Management": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "使用 macOS Service Management"
+          }
+        }
+      }
+    },
+    "VPN Tunnel": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VPN 隧道"
           }
         }
       }
@@ -5212,7 +6203,8 @@
             "value": "数值"
           }
         }
-      }
+      },
+      "extractionState": "stale"
     },
     "Vendor subfolder · Review before removal": {
       "localizations": {
@@ -5220,6 +6212,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "厂商子目录 · 请确认后勾选"
+          }
+        }
+      }
+    },
+    "Verify": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "验证"
           }
         }
       }
@@ -5240,6 +6242,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "发现新版本 %@"
+          }
+        }
+      }
+    },
+    "Video Memory": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显存"
+          }
+        }
+      }
+    },
+    "Video memory is the unified memory the GPU driver charges to each app — Metal buffers, textures and window surfaces it owns. Apps that animate through Core Animation are rendered inside WindowServer, so their cost shows as compositing load rather than their own GPU time.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显存是 GPU 驱动记在各应用名下的统一内存，包括它持有的 Metal 缓冲区、纹理和窗口表面。通过 Core Animation 做动画的应用在 WindowServer 内渲染，所以这部分开销显示为合成负载，而不是应用自己的 GPU 时间。"
           }
         }
       }
@@ -5280,6 +6302,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "鸢尾"
+          }
+        }
+      }
+    },
+    "Waiting for samples…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等待采样…"
           }
         }
       }
@@ -5384,12 +6416,122 @@
         }
       }
     },
+    "Where it comes from": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "负载来源"
+          }
+        }
+      }
+    },
+    "Whole-Mac draw": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "整台 Mac 的耗电"
+          }
+        }
+      }
+    },
+    "Wi-Fi or Ethernet": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wi-Fi 或以太网"
+          }
+        }
+      }
+    },
     "Will move to Trash": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "将移入废纸篓"
+          }
+        }
+      }
+    },
+    "Window Compositing": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "窗口合成"
+          }
+        }
+      }
+    },
+    "WindowServer %@ before · %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "排查前 WindowServer %1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "WindowServer GPU went from %@ to %@ after it %@. Activity Monitor shows this as WindowServer.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "它%3$@后，WindowServer GPU 从 %1$@ 升到 %2$@。活动监视器里会显示为 WindowServer。"
+          }
+        }
+      }
+    },
+    "WindowServer composites every window. Much of its GPU time is caused by other apps; see Window Compositing below.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WindowServer 负责合成所有窗口，它的 GPU 时间很大一部分是其他应用造成的，详见下方「窗口合成」。"
+          }
+        }
+      }
+    },
+    "WindowServer draws every window and runs Core Animation's renderer. An app that animates nonstop, redraws too often or uses large translucent windows can show 0% GPU itself while WindowServer climbs. When an app launches, comes forward, hides or quits, any jump in WindowServer is credited to it here.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WindowServer 绘制所有窗口，并运行 Core Animation 的渲染器。一个应用动画不停、重绘过于频繁或使用大面积半透明窗口时，自身 GPU 可能是 0%，而 WindowServer 却在上升。应用启动、切到前台、隐藏或退出时，WindowServer 的跳变都会记在它头上。"
+          }
+        }
+      }
+    },
+    "WindowServer has %@ GPU load from an unknown app": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WindowServer 有 %@ GPU 负载来源未明"
+          }
+        }
+      }
+    },
+    "WindowServer was nearly idle, so the result says little. Run it again while the GPU is busy.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WindowServer 当时几乎空闲，结果参考价值不大。请在 GPU 繁忙时再测一次。"
+          }
+        }
+      }
+    },
+    "WindowServer went from %@ to %@ after it %@. Activity Monitor shows this as WindowServer.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "它%3$@后，WindowServer 从 %1$@ 升到 %2$@。活动监视器里会显示为 WindowServer。"
           }
         }
       }
@@ -5467,12 +6609,52 @@
         }
       }
     },
+    "came to the front": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切到前台"
+          }
+        }
+      }
+    },
+    "closed its windows": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭窗口"
+          }
+        }
+      }
+    },
+    "compositing +%@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "合成负载 +%@"
+          }
+        }
+      }
+    },
     "iPhone and iPad backups stored on this Mac": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "本机保存的 iPhone 与 iPad 备份"
+          }
+        }
+      }
+    },
+    "launched": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动"
           }
         }
       }
@@ -5528,6 +6710,62 @@
           }
         }
       }
+    },
+    "opened a window": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开窗口"
+          }
+        }
+      }
+    },
+    "quit": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出"
+          }
+        }
+      }
+    },
+    "was hidden": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "被隐藏"
+          }
+        }
+      }
+    },
+    "was unhidden": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消隐藏"
+          }
+        }
+      }
+    },
+    "went to the background": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退到后台"
+          }
+        }
+      }
+    },
+    "·": {
+      "shouldTranslate": false
+    },
+    "−%@": {
+      "shouldTranslate": false
     }
   },
   "version": "1.0"

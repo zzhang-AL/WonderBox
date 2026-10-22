@@ -30,6 +30,7 @@ struct WonderBoxApplication: App {
         Window("WonderBox", id: "main") {
             RootView()
                 .environmentObject(model)
+                .environmentObject(model.metrics)
                 .preferredColorScheme(selectedAppearance.colorScheme)
                 .tint(selectedAccent.color)
                 .frame(minWidth: 980, minHeight: 660)
@@ -81,6 +82,7 @@ struct WonderBoxApplication: App {
         MenuBarExtra(isInserted: $showMenuBar) {
             MenuBarContentView(preventer: model.sleepPreventer, optimizer: model.memoryOptimizer)
                 .environmentObject(model)
+                .environmentObject(model.metrics)
                 .environmentObject(dockPresence)
                 .preferredColorScheme(selectedAppearance.colorScheme)
         } label: {
@@ -92,6 +94,7 @@ struct WonderBoxApplication: App {
 
 private struct MenuBarContentView: View {
     @EnvironmentObject private var model: AppModel
+    @EnvironmentObject private var metrics: MetricsStore
     @EnvironmentObject private var dockPresence: DockPresenceController
     @Environment(\.openWindow) private var openWindow
     @ObservedObject var preventer: SleepPreventer
@@ -128,8 +131,8 @@ private struct MenuBarContentView: View {
                 }
                 Spacer()
                 StatusPill(
-                    text: model.snapshot.thermalState == .nominal ? String(localized: "Thermals Normal") : String(localized: "Running Hot"),
-                    color: model.snapshot.thermalState == .nominal ? .healthy : .warning
+                    text: metrics.snapshot.thermalState == .nominal ? String(localized: "Thermals Normal") : String(localized: "Running Hot"),
+                    color: metrics.snapshot.thermalState == .nominal ? .healthy : .warning
                 )
                 Button {
                     Task { await refreshStatus() }
@@ -149,9 +152,9 @@ private struct MenuBarContentView: View {
             }
 
             HStack(spacing: 8) {
-                MenuMetric(title: "CPU", value: AppFormatters.percent(model.snapshot.cpuUsage))
-                MenuMetric(title: String(localized: "Memory"), value: AppFormatters.percent(model.snapshot.memoryFraction))
-                MenuMetric(title: String(localized: "Disk"), value: AppFormatters.percent(model.snapshot.diskFraction))
+                MenuMetric(title: "CPU", value: AppFormatters.percent(metrics.snapshot.cpuUsage))
+                MenuMetric(title: String(localized: "Memory"), value: AppFormatters.percent(metrics.snapshot.memoryFraction))
+                MenuMetric(title: String(localized: "Disk"), value: AppFormatters.percent(metrics.snapshot.diskFraction))
             }
 
             fanSummary

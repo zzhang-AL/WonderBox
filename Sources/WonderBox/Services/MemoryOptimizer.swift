@@ -73,10 +73,7 @@ final class MemoryOptimizer: ObservableObject {
     }
 
     func quit(_ usage: ApplicationMemoryUsage, force: Bool) async {
-        let target = usage.location.standardizedFileURL.path
-        let running = NSWorkspace.shared.runningApplications.filter {
-            $0.bundleURL?.standardizedFileURL.path == target
-        }
+        let running = ProcessMemoryInspector.runningApplications(at: usage.location)
         guard !running.isEmpty else {
             await refreshApplications()
             return

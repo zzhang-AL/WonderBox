@@ -10,6 +10,7 @@ struct MemoryBreakdown: Equatable, Sendable {
     var cached: UInt64 = 0
     var swapUsed: UInt64 = 0
     var pressure: MemoryPressure = .normal
+    var swapTotal: UInt64 = 0
 
     var used: UInt64 { app + wired + compressed }
 
