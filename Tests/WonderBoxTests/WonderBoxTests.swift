@@ -9,7 +9,8 @@ final class WonderBoxTests: XCTestCase {
     }
 
     func testDurationFormattingUsesTwoLargestUnits() {
-        let threeDays = AppFormatters.duration(3 * 86_400 + 4 * 3_600 + 5 * 60 + 30)
+        let interval: TimeInterval = 273_930 // 3 days, 4 hours, 5 minutes, 30 seconds
+        let threeDays = AppFormatters.duration(interval)
         XCTAssertTrue(threeDays.contains("3") && threeDays.contains("4"), threeDays)
         XCTAssertFalse(threeDays.contains("5"), threeDays)
         XCTAssertEqual(AppFormatters.duration(-10), AppFormatters.duration(0))
