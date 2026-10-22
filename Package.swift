@@ -62,6 +62,7 @@ let package = Package(
         ),
         .executableTarget(
             name: "WonderMaintenanceHelper",
+            dependencies: ["WonderSupport"],
             path: "Sources/WonderMaintenanceHelper"
         ),
         .testTarget(
