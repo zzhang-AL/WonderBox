@@ -54,6 +54,28 @@ Most "Mac cleaners" show you a big green number and hope you don't check. Wonder
 - GPU process usage comes from driver-provided context counters where available; unsupported drivers show `—`, not a fabricated zero. Concurrent contexts can total more than the overall device utilization
 - Uptime includes sleep, matching System Information's “Time since boot”
 
+- The CPU page shows per-core load split into efficiency and performance cores, the user/system split and the 1, 5 and 15-minute load average
+- The GPU page shows each app's video memory: the unified memory the GPU driver charges to it (Metal buffers, textures, window surfaces), with purgeable memory listed separately. WindowServer and other system processes can be read once with administrator authorization
+- Chrome/Electron GPU helpers, WebKit's GPU process and VPN system extensions are counted with the app they belong to
+
+### WindowServer attribution
+
+Activity Monitor often shows WindowServer using the GPU when an app is the real cause: Core Animation renders inside WindowServer, so an app that animates nonstop or redraws too often can show 0% GPU itself. No counter splits that cost by app, so WonderBox:
+
+- Samples WindowServer twice a second and watches app launches, activations, hides, quits and window changes. A clear step right after an app's event is credited to that app, pinned to the top of the GPU list as compositing load and announced in a banner, with an optional notification
+- Reports load that was already there before it started as unexplained, with a one-click quick check: it hides apps one at a time for about three seconds, most suspicious first, measures how far WindowServer drops, restores each app at once and stops when it finds the main source
+- Can keep detecting while the window is closed (Settings → GPU Monitoring), using well under 1% CPU
+
+### Network and battery
+
+- Network: live rates and totals since startup per interface, with VPN and proxy tunnels listed but not counted twice; per-app traffic comes from nettop, which only runs while the page is open
+- Battery: charge, time remaining, health (full-charge vs. design capacity), cycle count, whole-system power and adapter wattage, plus per-app energy from macOS's per-process energy model
+
+### Low overhead
+
+- Live metrics live in their own store, so only views that show them refresh; list rows redraw only when their figures change
+- Sampling pauses while the window is covered or hidden, and free disk space is cached for 30 seconds (the query goes through the CacheDelete service and costs far more than every other metric)
+
 ### Space cleanup
 
 ![Deep cleanup showing package-manager caches and browser caches](docs/screenshots/cleaner-deep.png)
