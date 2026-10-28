@@ -145,6 +145,16 @@
         }
       }
     },
+    "%@ was removed from Applications. Review the files below; selected files will be moved to the Trash.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 已从应用程序目录移除。请检查下列文件；选中的文件将移入废纸篓。"
+          }
+        }
+      }
+    },
     "%@ · also counted on Wi-Fi or Ethernet": {
       "localizations": {
         "zh-Hans": {
@@ -292,6 +302,16 @@
         }
       }
     },
+    "%lld hours": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 小时"
+          }
+        }
+      }
+    },
     "%lld items": {
       "localizations": {
         "zh-Hans": {
@@ -358,6 +378,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$lld / %2$lld mAh"
+          }
+        }
+      }
+    },
+    "%lld of %lld selected": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已选 %lld / %lld 项"
           }
         }
       }
@@ -612,6 +642,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "同一时间还有其他应用发生变化，这次跳变可能由多个应用共同造成"
+          }
+        }
+      }
+    },
+    "Another cleanup is in progress. Try again shortly.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "另一个清理任务正在进行，请稍后重试。"
           }
         }
       }
@@ -909,6 +949,26 @@
         }
       }
     },
+    "Automatic Cleanup": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动清理"
+          }
+        }
+      }
+    },
+    "Automatic Cleanup Settings": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动清理设置"
+          }
+        }
+      }
+    },
     "Automatic Sleep Allowed": {
       "localizations": {
         "zh-Hans": {
@@ -1171,6 +1231,66 @@
         }
       }
     },
+    "CPU Core %lld": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CPU 核心 %lld"
+          }
+        }
+      }
+    },
+    "CPU Sensor": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CPU 传感器"
+          }
+        }
+      }
+    },
+    "CPU Temperature": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CPU 温度"
+          }
+        }
+      }
+    },
+    "Cache estimate not available yet": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缓存大小尚未估算"
+          }
+        }
+      }
+    },
+    "Cache size": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缓存大小"
+          }
+        }
+      }
+    },
+    "Cache threshold": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缓存大小阈值"
+          }
+        }
+      }
+    },
     "Cached Files": {
       "localizations": {
         "zh-Hans": {
@@ -1302,12 +1422,32 @@
         }
       }
     },
+    "Checking caches…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在检查缓存…"
+          }
+        }
+      }
+    },
     "Checking for updates…": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "正在检查更新…"
+          }
+        }
+      }
+    },
+    "Checking related files…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在检查关联文件…"
           }
         }
       }
@@ -1348,6 +1488,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "选择目录"
+          }
+        }
+      }
+    },
+    "Choose a cache-size threshold or a time interval. Automatic cleanup is off until you enable it, and only rebuildable caches of idle apps are included. You can change this later in Settings.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可按缓存大小或时间间隔触发。自动清理默认关闭，开启后仅处理未运行应用的可重建缓存。稍后可在设置中调整。"
           }
         }
       }
@@ -1422,12 +1572,32 @@
         }
       }
     },
+    "Clean every": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清理间隔"
+          }
+        }
+      }
+    },
     "Clean the selected items?": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "清理所选项目？"
+          }
+        }
+      }
+    },
+    "Clean when": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "触发条件"
           }
         }
       }
@@ -1564,6 +1734,16 @@
         }
       }
     },
+    "Color": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "彩色"
+          }
+        }
+      }
+    },
     "Compositor": {
       "localizations": {
         "zh-Hans": {
@@ -1604,6 +1784,16 @@
         }
       }
     },
+    "Configure and Enable…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配置并开启…"
+          }
+        }
+      }
+    },
     "Consider closing heavy tasks": {
       "localizations": {
         "zh-Hans": {
@@ -1640,6 +1830,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "珊瑚"
+          }
+        }
+      }
+    },
+    "Core Temperatures": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "核心温度"
           }
         }
       }
@@ -2055,6 +2255,16 @@
         }
       }
     },
+    "Each available CPU/GPU sensor is shown separately. Sensor coverage and physical-core mapping depend on this Mac; missing cores are not estimated.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "逐项展示可读取的 CPU/GPU 传感器。传感器数量及其与物理核心的对应关系取决于机型；不会估算缺失核心的温度。"
+          }
+        }
+      }
+    },
     "Efficiency cores": {
       "localizations": {
         "zh-Hans": {
@@ -2117,6 +2327,16 @@
         }
       }
     },
+    "Enable automatic cleanup?": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开启自动清理？"
+          }
+        }
+      }
+    },
     "Energy Users": {
       "localizations": {
         "zh-Hans": {
@@ -2127,12 +2347,32 @@
         }
       }
     },
+    "Estimate includes the default Quick Clean categories; actual reclaimed space may vary": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预估包含一键清理的默认分类；实际释放空间可能有所不同"
+          }
+        }
+      }
+    },
     "Estimated by macOS's per-process energy model for CPU, GPU and other components. System processes owned by other users are not included.": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "由 macOS 按进程的能耗模型估算，涵盖 CPU、GPU 等部件。不包含属于其他用户的系统进程。"
+          }
+        }
+      }
+    },
+    "Estimating reclaimable caches…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在估算可回收空间…"
           }
         }
       }
@@ -2480,6 +2720,26 @@
         }
       }
     },
+    "GPU Sensor": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPU 传感器"
+          }
+        }
+      }
+    },
+    "GPU Temperature": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPU 温度"
+          }
+        }
+      }
+    },
     "GPU Time": {
       "localizations": {
         "zh-Hans": {
@@ -2496,6 +2756,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "GPU 占用率来自驱动计数器。并行 GPU 上下文的合计占用率可超过 100%；此数值不同于整机 GPU 利用率。"
+          }
+        }
+      }
+    },
+    "Get a related-file cleanup prompt when you delete an app in Finder, even with WonderBox closed. You can install or uninstall this optional login item later in Settings.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Finder 中删除应用时弹出关联文件清理提示，退出 WonderBox 后也有效。稍后可在设置中安装或卸载这个可选登录项。"
           }
         }
       }
@@ -2661,6 +2931,16 @@
         }
       }
     },
+    "Highest available sensor reading; unavailable sensors show a dash": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示可用传感器中的最高温度；未读取到温度时显示横线"
+          }
+        }
+      }
+    },
     "Idle": {
       "localizations": {
         "zh-Hans": {
@@ -2677,6 +2957,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "空闲时约 %@"
+          }
+        }
+      }
+    },
+    "If access was already enabled, remove the old entry and add the currently running copy of WonderBox, then relaunch.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "若之前已开启权限，请移除旧条目，重新添加当前运行的 WonderBox 副本，然后重新启动。"
           }
         }
       }
@@ -2728,6 +3018,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "安装日期"
+          }
+        }
+      }
+    },
+    "Install Plugin": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安装插件"
+          }
+        }
+      }
+    },
+    "Install the Uninstall Watcher plugin?": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安装卸载监听插件？"
+          }
+        }
+      }
+    },
+    "Installed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已安装"
           }
         }
       }
@@ -2885,6 +3205,16 @@
         }
       }
     },
+    "Keep Files": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保留文件"
+          }
+        }
+      }
+    },
     "Keep WonderBox in the menu bar?": {
       "localizations": {
         "zh-Hans": {
@@ -2961,6 +3291,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "最近使用"
+          }
+        }
+      }
+    },
+    "Last automatic cleanup": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上次自动清理"
           }
         }
       }
@@ -3336,6 +3676,16 @@
         }
       }
     },
+    "Menu bar icon": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "菜单栏图标"
+          }
+        }
+      }
+    },
     "Menu bar shortcut": {
       "localizations": {
         "zh-Hans": {
@@ -3406,6 +3756,26 @@
         }
       }
     },
+    "Monochrome": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "单色"
+          }
+        }
+      }
+    },
+    "Monochrome adapts to the menu bar appearance; Color keeps the original icon.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "单色图标跟随菜单栏外观，彩色图标保留原有配色。"
+          }
+        }
+      }
+    },
     "Mostly from %@ +%@": {
       "localizations": {
         "zh-Hans": {
@@ -3426,12 +3796,32 @@
         }
       }
     },
+    "Move Selected to Trash": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将所选文件移入废纸篓"
+          }
+        }
+      }
+    },
     "Move the selected items to the Trash?": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "将所选项目移入废纸篓？"
+          }
+        }
+      }
+    },
+    "Move the selected related files to the Trash?": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将选中的关联文件移入废纸篓？"
           }
         }
       }
@@ -3476,6 +3866,16 @@
         }
       },
       "extractionState": "stale"
+    },
+    "Moving files to the Trash…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在移入废纸篓…"
+          }
+        }
+      }
     },
     "Name": {
       "localizations": {
@@ -3668,6 +4068,26 @@
         }
       }
     },
+    "No related files were found. You can close this window or grant Full Disk Access and rescan.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到关联文件。可以关闭此窗口，或授予完全磁盘访问权限后重新扫描。"
+          }
+        }
+      }
+    },
+    "No temperature sensors exposed on this Mac": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此 Mac 未开放可读取的温度传感器"
+          }
+        }
+      }
+    },
     "Normal": {
       "localizations": {
         "zh-Hans": {
@@ -3704,6 +4124,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "未检测到"
+          }
+        }
+      }
+    },
+    "Not installed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未安装"
           }
         }
       }
@@ -3768,6 +4198,16 @@
         }
       }
     },
+    "OK": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "好"
+          }
+        }
+      }
+    },
     "Ocean": {
       "localizations": {
         "zh-Hans": {
@@ -3804,6 +4244,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "仅将列出的缓存移入废纸篓，不选择聊天数据库和下载的附件。"
+          }
+        }
+      }
+    },
+    "Only rebuildable caches belonging to idle apps are cleaned. Downloads, app data, messaging caches and the Trash are never included. Runs every five minutes while WonderBox is open, including in the menu bar.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅清理未运行应用的可重建缓存，不包含下载文件、应用数据、聊天缓存和废纸篓。WonderBox 运行期间每五分钟检查一次，菜单栏驻留时也有效。"
           }
         }
       }
@@ -4100,6 +4550,16 @@
         }
       }
     },
+    "Plugin Setup": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插件设置"
+          }
+        }
+      }
+    },
     "Plugin bundle identifier matches · Review before removal": {
       "localizations": {
         "zh-Hans": {
@@ -4236,6 +4696,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "一键清理"
+          }
+        }
+      }
+    },
+    "Quick Clean · About %@ reclaimable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一键清理 · 预计可回收 %@"
           }
         }
       }
@@ -4380,6 +4850,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在读取目录…"
+          }
+        }
+      }
+    },
+    "Reading temperature sensors…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取温度传感器…"
           }
         }
       }
@@ -4604,6 +5084,16 @@
         }
       }
     },
+    "Remove Related Files?": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除关联文件？"
+          }
+        }
+      }
+    },
     "Renderer": {
       "localizations": {
         "zh-Hans": {
@@ -4644,12 +5134,42 @@
         }
       }
     },
+    "Restart Plugin": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重启插件"
+          }
+        }
+      }
+    },
+    "Restart after updating WonderBox to use the latest plugin": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新 WonderBox 后重启插件，以使用最新版本"
+          }
+        }
+      }
+    },
     "Review Selection": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "返回检查"
+          }
+        }
+      }
+    },
+    "Review before removal": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除前请检查"
           }
         }
       }
@@ -4670,6 +5190,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在使用电源适配器供电"
+          }
+        }
+      }
+    },
+    "SMC Sensor": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SMC 传感器"
           }
         }
       }
@@ -4817,6 +5347,16 @@
         }
       }
     },
+    "Select all related files": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全选关联文件"
+          }
+        }
+      }
+    },
     "Select an Application": {
       "localizations": {
         "zh-Hans": {
@@ -4960,6 +5500,16 @@
         }
       }
     },
+    "Show WonderBox in Finder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Finder 中显示 WonderBox"
+          }
+        }
+      }
+    },
     "Show all applications": {
       "localizations": {
         "zh-Hans": {
@@ -5057,6 +5607,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "大小"
+          }
+        }
+      }
+    },
+    "Size or interval": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "达到大小或时间条件"
           }
         }
       }
@@ -5159,6 +5719,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "部分插件位置超出检查数量上限，关联文件列表可能不完整。"
+          }
+        }
+      }
+    },
+    "Some selected files changed or are inaccessible. Rescan and review them before retrying.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分已选文件已变化或访问受限，请重新扫描并确认后再试。"
           }
         }
       }
@@ -5523,6 +6093,16 @@
         }
       }
     },
+    "The app is running, restored, reinstalled, or its removal could not be verified. No files were removed.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该应用正在运行、已恢复、已重新安装，或移除状态尚未确认。本次未移除任何文件。"
+          }
+        }
+      }
+    },
     "The application signature could not be verified": {
       "localizations": {
         "zh-Hans": {
@@ -5844,6 +6424,16 @@
         }
       }
     },
+    "Time interval": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "时间间隔"
+          }
+        }
+      }
+    },
     "Too many files in the uninstall request": {
       "localizations": {
         "zh-Hans": {
@@ -5990,6 +6580,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "卸载 %@？"
+          }
+        }
+      }
+    },
+    "Uninstall Plugin": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "卸载插件"
+          }
+        }
+      }
+    },
+    "Uninstall Watcher Plugin": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "卸载监听插件"
           }
         }
       }
@@ -6306,6 +6916,16 @@
         }
       }
     },
+    "Waiting for macOS approval": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等待 macOS 批准"
+          }
+        }
+      }
+    },
     "Waiting for samples…": {
       "localizations": {
         "zh-Hans": {
@@ -6342,6 +6962,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在等待使用率采样…"
+          }
+        }
+      }
+    },
+    "Watch /Applications and ~/Applications. After an app is deleted or moved to the Trash, ask whether to remove its related files. This optional login item works even when WonderBox is closed; no files are removed without confirmation.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "监听 /Applications 和 ~/Applications。应用被删除或移入废纸篓后，询问是否清理关联文件。这是可选的独立登录项，退出 WonderBox 后仍可运行；确认前不会移除任何文件。"
           }
         }
       }
@@ -6680,6 +7310,16 @@
         }
       },
       "extractionState": "stale"
+    },
+    "macOS denied access to Cookies. Administrator authorization does not grant privacy access. Give this copy of WonderBox Full Disk Access, quit and reopen WonderBox, then retry. Other selected files were processed independently.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS 拒绝访问 Cookies。管理员鉴权不等于隐私授权。请为当前这份 WonderBox 授予完全磁盘访问权限，退出并重新打开后再试；其他已选文件会独立处理。"
+          }
+        }
+      }
     },
     "macOS denied the background service access to your Trash. This does not establish whether WonderBox has Full Disk Access.": {
       "localizations": {
