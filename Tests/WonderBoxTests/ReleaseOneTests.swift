@@ -154,7 +154,7 @@ final class ReleaseOneTests: XCTestCase {
         let model = AppModel()
         await model.refreshFans()
         let cases: [(String, AnyView, NSSize)] = [
-            ("compact-window", AnyView(MenuBarContentView(preventer: model.sleepPreventer, optimizer: model.memoryOptimizer).environmentObject(model).environmentObject(DockPresenceController())), NSSize(width: 360, height: 600)),
+            ("compact-window", AnyView(MenuBarPanel(preventer: model.sleepPreventer, optimizer: model.memoryOptimizer).environmentObject(model).environmentObject(DockPresenceController())), NSSize(width: 360, height: 600)),
             ("fan", AnyView(FanView().environmentObject(model)), NSSize(width: 1050, height: 1200)),
             ("background-settings", AnyView(VStack { UninstallWatcherSettings(controller: model.uninstallWatcher); AutomaticCleanupSettings(controller: model.automaticCleanup) }.padding(24)), NSSize(width: 760, height: 660)),
             ("external-uninstall", AnyView(ExternalUninstallSheet(event: UninstallWatchEvent(application: app()), controller: model.uninstallWatcher).environmentObject(model)), NSSize(width: 748, height: 568))

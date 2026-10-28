@@ -198,6 +198,21 @@ struct Sparkline: Shape {
     }
 }
 
+/// `Sparkline` closed down to the baseline, for a filled area under the line.
+struct SparklineArea: Shape {
+    let values: [Double]
+    var maximum: Double? = 1
+
+    func path(in rect: CGRect) -> Path {
+        var path = Sparkline(values: values, maximum: maximum).path(in: rect)
+        guard values.count > 1 else { return path }
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.closeSubpath()
+        return path
+    }
+}
+
 /// Rolling history with gridlines and a top-of-scale label, drawn with plain paths so it stays
 /// cheap to refresh with every sample.
 struct HistoryGraph: View {
