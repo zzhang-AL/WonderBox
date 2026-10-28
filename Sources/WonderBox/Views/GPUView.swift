@@ -293,7 +293,7 @@ struct CompositorAlertBanner: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("WindowServer has \(AppFormatters.decimalPercent(compositor.unexplained)) GPU load from an unknown app")
                         .font(.subheadline.weight(.semibold))
-                    Text("Probably an app that was already running. A quick check hides apps one at a time for a few seconds and stops when it finds the source.")
+                    Text("Probably an app that was already running. A quick check measures which apps redraw the most, then briefly hides the top suspects to confirm.")
                         .font(.caption).foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -338,6 +338,7 @@ private struct CompositorPanel: View {
     @ObservedObject var probe: CompositorProbe
     /// Refreshed on a timer rather than per render: listing windows is not free.
     @State private var candidates: [CompositorApp] = []
+    @State private var canScan = RedrawSampler.hasPermission
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -363,6 +364,7 @@ private struct CompositorPanel: View {
         .task {
             while !Task.isCancelled {
                 if !probe.isRunning { candidates = CompositorProbe.candidates(rankedBy: compositor) }
+                canScan = RedrawSampler.hasPermission
                 try? await Task.sleep(for: .seconds(5))
             }
         }
@@ -443,9 +445,24 @@ private struct CompositorPanel: View {
     private var quickCheck: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Quick check").font(.subheadline.weight(.semibold))
-            Text("Hides apps with visible windows one at a time for about three seconds, most suspicious first, and measures how much WindowServer drops. Each app comes back right away; the check stops once one app explains most of the load.")
+            Text(canScan
+                 ? "First measures how much each app redraws, without hiding anything. Then it hides only the top suspects for about three seconds each and measures how much WindowServer drops. Each app comes back right away."
+                 : "Hides apps with visible windows one at a time for about three seconds, most suspicious first, and measures how much WindowServer drops. Each app comes back right away; the check stops once one app explains most of the load.")
                 .font(.caption).foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
+            if !canScan {
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Image(systemName: "rectangle.dashed.badge.record").foregroundStyle(.secondary)
+                    Text("Allow Screen Recording to find the source by measuring redraws instead of hiding every app. WonderBox only reads which areas changed; nothing is recorded or saved.")
+                        .font(.caption).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Button("Allow…") {
+                        RedrawSampler.requestPermission()
+                        canScan = RedrawSampler.hasPermission
+                    }
+                    .controlSize(.small)
+                }
+            }
             HStack {
                 if probe.isRunning {
                     Button("Cancel", role: .cancel) { probe.cancel() }
@@ -457,7 +474,7 @@ private struct CompositorPanel: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .disabled(candidates.isEmpty || compositor.compositorPID == nil)
-                    Text("Up to \(CompositorProbe.estimatedSeconds(for: candidates.count)) seconds")
+                    Text("Up to \(CompositorProbe.estimatedSeconds(for: candidates.count, scanning: canScan && candidates.count > 1)) seconds")
                         .font(.caption).foregroundStyle(.secondary)
                 }
             }
@@ -487,6 +504,21 @@ private struct CompositorPanel: View {
                 Text("WindowServer was nearly idle, so the result says little. Run it again while the GPU is busy.")
                     .font(.caption).foregroundStyle(Color.warning)
             }
+            if let message = probe.scanMessage {
+                Text(message).font(.caption).foregroundStyle(Color.warning)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            if let redraw = probe.redraw {
+                redrawRanking(redraw)
+                if probe.results.isEmpty {
+                    Text("No app redraws enough to explain WindowServer's load, so no app was hidden.")
+                        .font(.caption).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                } else {
+                    Text("Confirmed by hiding").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                        .padding(.top, 4)
+                }
+            }
             ForEach(probe.results) { result in
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 8) {
@@ -508,6 +540,66 @@ private struct CompositorPanel: View {
                         .frame(height: 4)
                     }
                 }
+            }
+            if !probe.isExplained {
+                displaySetup
+            }
+        }
+    }
+
+    private func redrawRanking(_ redraw: RedrawSampler.Result) -> some View {
+        let shown = redraw.shares.prefix(5).filter { $0.screensPerSecond >= 0.01 }
+        let scale = max(shown.first?.screensPerSecond ?? 0, .ulpOfOne)
+        return VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text("Redraw by app").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                Spacer()
+                if let overhead = probe.scanOverhead, overhead >= probe.noise {
+                    Text("The scan itself added about \(AppFormatters.decimalPercent(overhead))")
+                        .font(.caption2).foregroundStyle(.tertiary)
+                }
+            }
+            if shown.isEmpty {
+                Text("No app window changed during the scan.").font(.caption).foregroundStyle(.secondary)
+            }
+            ForEach(shown) { share in
+                HStack(spacing: 8) {
+                    Image(nsImage: ApplicationIconCache.icon(for: URL(fileURLWithPath: share.app.path)))
+                        .resizable().scaledToFit().frame(width: 16, height: 16)
+                    Text(share.app.name).lineLimit(1)
+                    Spacer()
+                    Text("\(String(format: "%.1f", share.screensPerSecond)) screens/s · \(Int(share.framesPerSecond.rounded())) fps")
+                        .monospacedDigit().foregroundStyle(.secondary)
+                }
+                .font(.caption)
+                .background(alignment: .leading) {
+                    GeometryReader { proxy in
+                        RoundedRectangle(cornerRadius: 3)
+                            .fill(Color(hex: 0x7A67D8).opacity(0.12))
+                            .frame(width: proxy.size.width * share.screensPerSecond / scale)
+                    }
+                }
+                .help("Redrawn area per second, measured in full screens, and frames that changed per second (capture runs at up to 60 fps)")
+            }
+        }
+    }
+
+    /// Shown when no app explains the load: the display setup costs WindowServer work every frame.
+    private var displaySetup: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Display setup").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                .padding(.top, 4)
+            if probe.displayNotes.isEmpty {
+                Text("Nothing unusual: no external display, high refresh rate or heavily scaled resolution. The load may come from system UI or menu bar items, which the check does not hide.")
+                    .font(.caption).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            } else {
+                ForEach(probe.displayNotes, id: \.self) { note in
+                    Label(note, systemImage: "display").font(.caption).foregroundStyle(.secondary)
+                }
+                Text("Try the same workload without that setting to see if WindowServer drops.")
+                    .font(.caption).foregroundStyle(.tertiary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }

@@ -44,6 +44,16 @@
         }
       }
     },
+    "%@ in use": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已用 %@"
+          }
+        }
+      }
+    },
     "%@ is driving up GPU usage": {
       "localizations": {
         "zh-Hans": {
@@ -94,12 +104,32 @@
         }
       }
     },
+    "%@ refreshes at %lld Hz": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ 刷新率为 %2$lld Hz"
+          }
+        }
+      }
+    },
     "%@ remaining": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "剩余 %@"
+          }
+        }
+      }
+    },
+    "%@ screens/s · %lld fps": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ 屏/秒 · %2$lld fps"
           }
         }
       }
@@ -135,12 +165,32 @@
         }
       }
     },
+    "%@ used": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已用 %@"
+          }
+        }
+      }
+    },
     "%@ used · %@ compressed": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "已用 %@ · 已压缩 %@"
+          }
+        }
+      }
+    },
+    "%@ uses a scaled resolution that renders %@× the panel's pixels": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ 使用缩放分辨率，渲染像素是面板的 %2$@ 倍"
           }
         }
       }
@@ -221,6 +271,16 @@
     "%lld RPM": {
       "shouldTranslate": false
     },
+    "%lld W adapter": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld W 电源适配器"
+          }
+        }
+      }
+    },
     "%lld W power adapter": {
       "localizations": {
         "zh-Hans": {
@@ -278,6 +338,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld 类已选"
+          }
+        }
+      }
+    },
+    "%lld cores": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 核"
+          }
+        }
+      }
+    },
+    "%lld cycles": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "循环 %lld 次"
+          }
+        }
+      }
+    },
+    "%lld external displays: every extra screen is composited each frame": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 台外接显示器：每多一块屏幕，每帧都要多合成一块"
           }
         }
       }
@@ -516,6 +606,16 @@
         }
       }
     },
+    "Actions for %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 的操作"
+          }
+        }
+      }
+    },
     "Administrator authorization cancelled": {
       "localizations": {
         "zh-Hans": {
@@ -576,12 +676,32 @@
         }
       }
     },
+    "Allow Screen Recording to find the source by measuring redraws instead of hiding every app. WonderBox only reads which areas changed; nothing is recorded or saved.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "允许屏幕录制后，可通过测量重绘来定位来源，无需逐个隐藏 App。WonderBox 只读取哪些区域发生了变化，不会录制或保存任何画面。"
+          }
+        }
+      }
+    },
     "Allow WonderBox to control Finder in System Settings > Privacy & Security > Automation": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "请在“系统设置 > 隐私与安全性 > 自动化”中允许 WonderBox 控制 Finder"
+          }
+        }
+      }
+    },
+    "Allow…": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "允许…"
           }
         }
       }
@@ -662,6 +782,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "App %@"
+          }
+        }
+      }
+    },
+    "App %@ · Wired %@ · Compressed %@ · Swap %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App %1$@ · 联动 %2$@ · 已压缩 %3$@ · 交换 %4$@"
           }
         }
       }
@@ -899,6 +1029,16 @@
         }
       }
     },
+    "Ask apps to release cached memory": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "让应用释放缓存的内存"
+          }
+        }
+      }
+    },
     "Ask before quitting": {
       "localizations": {
         "zh-Hans": {
@@ -1040,6 +1180,16 @@
         }
       }
     },
+    "Available space includes purgeable files macOS can remove on demand": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可用空间包含 macOS 可按需移除的可清除文件"
+          }
+        }
+      }
+    },
     "Average number of runnable threads over 1, 5 and 15 minutes": {
       "localizations": {
         "zh-Hans": {
@@ -1167,6 +1317,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "电池功率"
+          }
+        }
+      }
+    },
+    "Battery low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "电量不足"
           }
         }
       }
@@ -1794,6 +1954,16 @@
         }
       }
     },
+    "Confirmed by hiding": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐藏验证结果"
+          }
+        }
+      }
+    },
     "Consider closing heavy tasks": {
       "localizations": {
         "zh-Hans": {
@@ -2135,12 +2305,42 @@
         }
       }
     },
+    "Disk space low": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "磁盘空间不足"
+          }
+        }
+      }
+    },
     "Dismiss message": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "关闭消息"
+          }
+        }
+      }
+    },
+    "Display": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示器"
+          }
+        }
+      }
+    },
+    "Display setup": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示设置"
           }
         }
       }
@@ -2387,6 +2587,26 @@
         }
       }
     },
+    "Everything looks normal": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一切正常"
+          }
+        }
+      }
+    },
+    "Excellent": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "很好"
+          }
+        }
+      }
+    },
     "Expanded": {
       "localizations": {
         "zh-Hans": {
@@ -2465,6 +2685,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "设置风扇目标转速失败"
+          }
+        }
+      }
+    },
+    "Fair": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一般"
           }
         }
       }
@@ -2550,6 +2780,16 @@
         }
       }
     },
+    "Fastest fan; range %lld–%lld RPM": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最快的风扇；转速范围 %1$lld–%2$lld RPM"
+          }
+        }
+      }
+    },
     "Filter": {
       "localizations": {
         "zh-Hans": {
@@ -2596,6 +2836,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在查找关联文件…"
+          }
+        }
+      }
+    },
+    "First measures how much each app redraws, without hiding anything. Then it hides only the top suspects for about three seconds each and measures how much WindowServer drops. Each app comes back right away.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "先测量每个 App 的重绘量，不隐藏任何窗口；再只把嫌疑最大的几个 App 各隐藏约三秒，测量 WindowServer 下降多少。每个 App 都会立即恢复。"
           }
         }
       }
@@ -2656,6 +2906,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "强制退出此应用？"
+          }
+        }
+      }
+    },
+    "Free Space": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可用空间"
           }
         }
       }
@@ -2820,6 +3080,16 @@
         }
       }
     },
+    "Good": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良好"
+          }
+        }
+      }
+    },
     "Grant Access": {
       "localizations": {
         "zh-Hans": {
@@ -2866,6 +3136,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "健康度"
+          }
+        }
+      }
+    },
+    "Health %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健康 %@"
+          }
+        }
+      }
+    },
+    "Health score %lld, %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健康分 %1$lld，%2$@"
+          }
+        }
+      }
+    },
+    "Heavy swap use": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "交换空间占用较多"
           }
         }
       }
@@ -2937,6 +3237,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "显示可用传感器中的最高温度；未读取到温度时显示横线"
+          }
+        }
+      }
+    },
+    "Hot": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "较热"
           }
         }
       }
@@ -3205,6 +3515,16 @@
         }
       }
     },
+    "Keep Display Awake": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同时保持显示器常亮"
+          }
+        }
+      }
+    },
     "Keep Files": {
       "localizations": {
         "zh-Hans": {
@@ -3231,6 +3551,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "记录本地诊断日志"
+          }
+        }
+      }
+    },
+    "Keep the Mac awake for %@. Right-click for other durations.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "让 Mac 保持唤醒 %@。右键可选择其他时长。"
           }
         }
       }
@@ -3505,6 +3835,16 @@
         }
       }
     },
+    "Low Load": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低负载"
+          }
+        }
+      }
+    },
     "Main Fan": {
       "localizations": {
         "zh-Hans": {
@@ -3562,6 +3902,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在测量应用流量…"
+          }
+        }
+      }
+    },
+    "Measuring how much each app redraws": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在测量各 App 的重绘量"
           }
         }
       }
@@ -3626,6 +3976,16 @@
         }
       }
     },
+    "Medium Load": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中负载"
+          }
+        }
+      }
+    },
     "Memory": {
       "localizations": {
         "zh-Hans": {
@@ -3672,6 +4032,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "已用内存 %1$@%2$@"
+          }
+        }
+      }
+    },
+    "Memory nearly full": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "内存将满"
           }
         }
       }
@@ -3987,12 +4357,32 @@
         }
       }
     },
+    "No app redraws enough to explain WindowServer's load, so no app was hidden.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有 App 的重绘量足以解释 WindowServer 的负载，因此没有隐藏任何 App。"
+          }
+        }
+      }
+    },
     "No app released a noticeable amount of cache": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "各 App 未释放明显缓存"
+          }
+        }
+      }
+    },
+    "No app window changed during the scan.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "扫描期间没有 App 窗口发生变化。"
           }
         }
       }
@@ -4014,6 +4404,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "没有检测到可控制的风扇"
+          }
+        }
+      }
+    },
+    "No issues found": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未发现问题"
           }
         }
       }
@@ -4188,6 +4588,16 @@
         }
       }
     },
+    "Nothing unusual: no external display, high refresh rate or heavily scaled resolution. The load may come from system UI or menu bar items, which the check does not hide.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未发现异常：没有外接显示器、高刷新率或大幅缩放的分辨率。负载可能来自系统界面或菜单栏项目，排查不会隐藏它们。"
+          }
+        }
+      }
+    },
     "Notify when an app drives up GPU usage": {
       "localizations": {
         "zh-Hans": {
@@ -4320,6 +4730,16 @@
         }
       }
     },
+    "Open WonderBox": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开 WonderBox"
+          }
+        }
+      }
+    },
     "Open app": {
       "localizations": {
         "zh-Hans": {
@@ -4340,12 +4760,32 @@
         }
       }
     },
+    "Open in WonderBox": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 WonderBox 中查看"
+          }
+        }
+      }
+    },
     "Open settings": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "打开设置"
+          }
+        }
+      }
+    },
+    "Open the main window (⌘O)": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开主窗口 (⌘O)"
           }
         }
       }
@@ -4600,6 +5040,16 @@
         }
       }
     },
+    "Pressure %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "压力%@"
+          }
+        }
+      }
+    },
     "Pressure: %@": {
       "localizations": {
         "zh-Hans": {
@@ -4660,12 +5110,32 @@
         }
       }
     },
+    "Probably an app that was already running. A quick check measures which apps redraw the most, then briefly hides the top suspects to confirm.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可能来自已在运行的 App。快速排查会先测量哪些 App 重绘最多，再短暂隐藏嫌疑最大的几个来确认。"
+          }
+        }
+      }
+    },
     "Processor": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "处理器"
+          }
+        }
+      }
+    },
+    "Processor busy": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "处理器繁忙"
           }
         }
       }
@@ -4786,6 +5256,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "直接退出"
+          }
+        }
+      }
+    },
+    "Quit WonderBox": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出 WonderBox"
+          }
+        }
+      }
+    },
+    "Quit WonderBox (⌘Q)": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出 WonderBox (⌘Q)"
           }
         }
       }
@@ -4934,6 +5424,26 @@
         }
       }
     },
+    "Redraw by app": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "各 App 重绘量"
+          }
+        }
+      }
+    },
+    "Redrawn area per second, measured in full screens, and frames that changed per second (capture runs at up to 60 fps)": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每秒重绘面积（以整屏为单位）和每秒发生变化的帧数（采样最高 60 fps）"
+          }
+        }
+      }
+    },
     "Reduce the current system load": {
       "localizations": {
         "zh-Hans": {
@@ -4970,6 +5480,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "刷新状态"
+          }
+        }
+      }
+    },
+    "Refresh Status (⌘R)": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刷新状态 (⌘R)"
           }
         }
       }
@@ -5094,12 +5614,32 @@
         }
       }
     },
+    "Remove caches and logs that are safe to delete": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除可安全删除的缓存和日志"
+          }
+        }
+      }
+    },
     "Renderer": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "渲染器"
+          }
+        }
+      }
+    },
+    "Renderer %@ · Tiler %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "渲染器 %1$@ · 拼贴器 %2$@"
           }
         }
       }
@@ -5427,6 +5967,16 @@
         }
       }
     },
+    "Settings (⌘,)": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置 (⌘,)"
+          }
+        }
+      }
+    },
     "Shared app-group data · Review before removal": {
       "localizations": {
         "zh-Hans": {
@@ -5587,6 +6137,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "模拟器缓存、设备支持文件与文档缓存"
+          }
+        }
+      }
+    },
+    "Since boot: received %@ · sent %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开机以来：接收 %1$@ · 发送 %2$@"
           }
         }
       }
@@ -5913,12 +6473,32 @@
         }
       }
     },
+    "Stop keeping the Mac awake": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止保持唤醒"
+          }
+        }
+      }
+    },
     "Stopped · normal when the Mac is cool": {
       "localizations": {
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "已停转 · 低温时属正常情况"
+          }
+        }
+      }
+    },
+    "Strained": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "吃紧"
           }
         }
       }
@@ -5999,6 +6579,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "系统缓存已清理"
+          }
+        }
+      }
+    },
+    "System power %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "整机功耗 %@"
           }
         }
       }
@@ -6243,6 +6833,16 @@
         }
       }
     },
+    "The redraw scan failed (%@); checking apps one at a time instead.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重绘扫描失败（%@），改为逐个检查 App。"
+          }
+        }
+      }
+    },
     "The release information is invalid.": {
       "localizations": {
         "zh-Hans": {
@@ -6259,6 +6859,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "沙盒环境不允许读取其他进程的内存占用"
+          }
+        }
+      }
+    },
+    "The scan itself added about %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "扫描本身增加了约 %@"
           }
         }
       }
@@ -6330,6 +6940,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "磁盘空间不足，废纸篓目标目录创建失败。"
+          }
+        }
+      }
+    },
+    "Thermal state %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "散热状态：%@"
           }
         }
       }
@@ -6454,6 +7074,16 @@
         }
       }
     },
+    "Top Apps": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高占用应用"
+          }
+        }
+      }
+    },
     "Top CPU Users": {
       "localizations": {
         "zh-Hans": {
@@ -6540,6 +7170,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "请更换搜索关键词"
+          }
+        }
+      }
+    },
+    "Try the same workload without that setting to see if WindowServer drops.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可以在不使用该设置的情况下重复同样的操作，看 WindowServer 是否下降。"
           }
         }
       }
@@ -6671,6 +7311,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "不支持的指令"
+          }
+        }
+      }
+    },
+    "Up %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已运行 %@"
           }
         }
       }
@@ -6962,6 +7612,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在等待使用率采样…"
+          }
+        }
+      }
+    },
+    "Warm": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "偏热"
           }
         }
       }

@@ -1,10 +1,12 @@
 import AppKit
 import CoreGraphics
 
-/// Finds the app behind WindowServer's GPU load by measurement rather than inference: hides apps
-/// with visible windows one at a time, most suspicious first, and measures how far WindowServer
-/// drops while each is hidden. Every app is unhidden right after its measurement, and the run stops
-/// as soon as one app explains most of the excess load.
+/// Finds the app behind WindowServer's GPU load by measurement rather than inference. With Screen
+/// Recording allowed, it first measures how much every app redraws without touching any window,
+/// then confirms only the top suspects by hiding each one and measuring how far WindowServer drops.
+/// Without it, it hides apps one at a time, most suspicious first. Every app is unhidden right after
+/// its measurement, and the run stops as soon as one app explains most of the excess load. When no
+/// app does, the display setup is the next place to look.
 @MainActor
 final class CompositorProbe: ObservableObject {
     struct Result: Identifiable, Sendable {
@@ -31,20 +33,54 @@ final class CompositorProbe: ObservableObject {
     /// scaling, so a few points of jitter are normal.
     @Published private(set) var noise: Double = 3
     @Published private(set) var stoppedEarly = false
+    /// Redraw per app from the passive scan; nil when it did not run.
+    @Published private(set) var redraw: RedrawSampler.Result?
+    /// WindowServer percentage points the scan's own capture added.
+    @Published private(set) var scanOverhead: Double?
+    @Published private(set) var scanMessage: String?
+    /// WindowServer above its idle floor when the check started.
+    @Published private(set) var excess: Double = 0
+    @Published private(set) var displayNotes: [String] = []
 
     private var task: Task<Void, Never>?
     private let settleSeconds = 1.0
     private let measureSeconds = 2.0
     /// One app explaining this share of the excess load ends the search.
     private let enoughShare = 0.7
+    private let scanSeconds = 3.0
+    /// Suspects confirmed by hiding after a scan.
+    nonisolated static let verificationLimit = 3
+    /// Redraw below this many screens per second cannot move WindowServer noticeably.
+    nonisolated static let minimumRedraw = 0.2
 
     var isRunning: Bool {
         if case .running = phase { return true }
         return false
     }
 
-    static func estimatedSeconds(for count: Int) -> Int {
-        Int((Double(count) * 3.5 + 2.5).rounded())
+    /// Whether a run would start with the passive scan.
+    static func scans(_ count: Int) -> Bool {
+        count > 1 && RedrawSampler.hasPermission
+    }
+
+    static func estimatedSeconds(for count: Int, scanning: Bool) -> Int {
+        let hidden = scanning ? min(count, verificationLimit) : count
+        return Int((Double(hidden) * 3.5 + 2.5 + (scanning ? 3 : 0)).rounded())
+    }
+
+    /// Apps worth confirming by hiding, largest redraw first: enough redraw to move WindowServer,
+    /// and a real share of all redraw rather than a blinking cursor next to a playing video.
+    nonisolated static func suspects(in redraw: RedrawSampler.Result, limit: Int = verificationLimit) -> [CompositorApp] {
+        let total = redraw.total
+        return redraw.shares
+            .filter { $0.screensPerSecond >= minimumRedraw && $0.screensPerSecond >= total * 0.1 }
+            .prefix(limit)
+            .map(\.app)
+    }
+
+    /// The confirmed drops account for at least half of the load above the floor.
+    var isExplained: Bool {
+        excess < 5 || results.filter { $0.compositorDrop >= noise }.reduce(0) { $0 + $1.compositorDrop } >= excess * 0.5
     }
 
     /// Regular apps with on-screen windows, most suspicious first.
@@ -79,6 +115,10 @@ final class CompositorProbe: ObservableObject {
         guard !isRunning, !candidates.isEmpty, let compositorPID = monitor.compositorPID else { return }
         results = []
         stoppedEarly = false
+        redraw = nil
+        scanOverhead = nil
+        scanMessage = nil
+        displayNotes = []
         task = Task { await run(candidates, compositorPID: compositorPID, monitor: monitor) }
     }
 
@@ -92,16 +132,39 @@ final class CompositorProbe: ObservableObject {
         monitor.suspendEvents = true
         defer { monitor.suspendEvents = false }
 
-        let steps = Double(candidates.count + 1)
+        let scanning = Self.scans(candidates.count)
+        // Baseline, the scan, each hide and the closing baseline.
+        var steps = Double(candidates.count + 1)
+        if scanning { steps = Double(min(candidates.count, Self.verificationLimit) + 2) }
         phase = .running(step: String(localized: "Measuring the baseline"), progress: 0)
         let before = await Self.measure(compositorPID: compositorPID, seconds: measureSeconds)
         let excess = max(before.compositor - monitor.floor, 0)
+        self.excess = excess
+
+        var order = candidates
+        var doneSteps = 1.0
+        if scanning, !Task.isCancelled {
+            phase = .running(step: String(localized: "Measuring how much each app redraws"), progress: doneSteps / steps)
+            async let load = Self.measure(compositorPID: compositorPID, seconds: scanSeconds)
+            do {
+                let result = try await RedrawSampler.sample(candidates, seconds: scanSeconds)
+                redraw = result
+                order = Self.suspects(in: result)
+                scanOverhead = await load.compositor - before.compositor
+            } catch {
+                scanMessage = String(localized: "The redraw scan failed (\(error.localizedDescription)); checking apps one at a time instead.")
+                _ = await load
+                steps = Double(candidates.count + 2)
+            }
+            doneSteps += 1
+        }
 
         var measured: [(CompositorApp, (compositor: Double, total: Double))] = []
-        for (index, app) in candidates.enumerated() {
+        for app in order {
             if Task.isCancelled { break }
             guard let running = NSRunningApplication(processIdentifier: app.pid), !running.isHidden, !running.isTerminated else { continue }
-            phase = .running(step: String(localized: "Hiding \(app.name)"), progress: Double(index + 1) / steps)
+            phase = .running(step: String(localized: "Hiding \(app.name)"), progress: doneSteps / steps)
+            doneSteps += 1
 
             // hide() often reports false for inactive apps yet still hides them.
             running.hide()
@@ -127,7 +190,7 @@ final class CompositorProbe: ObservableObject {
 
         var base = before
         noise = CompositorAttribution.minimumStep
-        if !stoppedEarly {
+        if !stoppedEarly && !measured.isEmpty {
             phase = .running(step: String(localized: "Measuring the baseline again"), progress: (steps - 0.5) / steps)
             let after = await Self.measure(compositorPID: compositorPID, seconds: measureSeconds)
             base = ((before.compositor + after.compositor) / 2, (before.total + after.total) / 2)
@@ -139,6 +202,7 @@ final class CompositorProbe: ObservableObject {
             .map { Result(app: $0.0, compositorDrop: base.compositor - $0.1.compositor, totalDrop: base.total - $0.1.total) }
             .sorted { $0.compositorDrop > $1.compositorDrop }
         monitor.recordProbe(results, noise: noise, baseline: base.compositor)
+        displayNotes = DisplayContext.notes(for: DisplayContext.current())
         frontmost?.activate()
         phase = .finished(Date())
     }
