@@ -208,7 +208,7 @@ swift test
 open build/WonderBox.app
 ```
 
-Swift Package 会构建 `WonderBox` 主程序、两个维护 helper 和可选的卸载监听登录项。`package_app.sh` 生成本地签名的 `build/WonderBox.app`，内含生成的图标、编译好的字符串目录与打包好的 helper；`UNIVERSAL=1 ./scripts/package_app.sh` 生成 Release 使用的 Apple Silicon + Intel 通用二进制。
+Swift Package 会构建 `WonderBox` 主程序、两个维护 helper 和可选的卸载监听登录项。`package_app.sh` 生成本地签名的 `build/WonderBox.app`，内含生成的图标、编译好的字符串目录与打包好的 helper；`UNIVERSAL=1 ./scripts/package_app.sh` 生成 Release 使用的 Apple Silicon + Intel 通用二进制。默认使用 ad-hoc 临时签名，对 macOS 而言每次重新构建都是一个新身份；传 `SIGN_IDENTITY`（见[本地签名](docs/LOCAL-SIGNING.md)）可让一次完全磁盘访问授权在多次重建后继续有效。
 
 ## 多语言
 

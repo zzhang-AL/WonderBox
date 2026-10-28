@@ -46,10 +46,21 @@ done
 iconutil -c icns "$ICONSET" -o "$CONTENTS/Resources/AppIcon.icns"
 rm -rf "$ICONSET"
 
-codesign --force --sign - "$CONTENTS/Library/LoginItems/WonderUninstallWatcher.app"
-codesign --force --sign - "$CONTENTS/Helpers/WonderFanHelper"
-codesign --force --sign - "$CONTENTS/Helpers/WonderMaintenanceHelper"
+# A stable signing identity keeps macOS privacy (TCC) grants valid across rebuilds. An ad-hoc
+# signature is identified by its cdhash, so every rebuilt binary looks like a different app and
+# each one needs "Full Disk Access" again. Set SIGN_IDENTITY to a keychain code-signing identity
+# to get a requirement of `identifier "…" and certificate root = H"…"`, which survives rebuilds.
+SIGN_IDENTITY="${SIGN_IDENTITY:-}"
+if [[ -n "$SIGN_IDENTITY" ]]; then
+  SIGN_FLAGS=(--sign "$SIGN_IDENTITY")
+else
+  SIGN_FLAGS=(--sign -)
+fi
+
+codesign --force "${SIGN_FLAGS[@]}" "$CONTENTS/Library/LoginItems/WonderUninstallWatcher.app"
+codesign --force "${SIGN_FLAGS[@]}" "$CONTENTS/Helpers/WonderFanHelper"
+codesign --force "${SIGN_FLAGS[@]}" "$CONTENTS/Helpers/WonderMaintenanceHelper"
 python3 scripts/configure_helper_identity.py "$APP"
-codesign --force --deep --sign - "$APP"
+codesign --force --deep "${SIGN_FLAGS[@]}" "$APP"
 
 echo "$APP"

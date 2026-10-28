@@ -204,7 +204,7 @@ swift test
 open build/WonderBox.app
 ```
 
-The package builds `WonderBox`, two maintenance helpers and the optional uninstall watcher login item. `package_app.sh` produces a locally signed `build/WonderBox.app` with the generated icon, compiled string catalogs and bundled helpers; `UNIVERSAL=1 ./scripts/package_app.sh` builds the Apple Silicon + Intel binaries used for releases.
+The package builds `WonderBox`, two maintenance helpers and the optional uninstall watcher login item. `package_app.sh` produces a locally signed `build/WonderBox.app` with the generated icon, compiled string catalogs and bundled helpers; `UNIVERSAL=1 ./scripts/package_app.sh` builds the Apple Silicon + Intel binaries used for releases. Signing is ad-hoc by default, which makes every rebuild a new identity to macOS; pass `SIGN_IDENTITY` (see [Local Signing](docs/LOCAL-SIGNING.md)) to keep a single Full Disk Access grant valid across rebuilds.
 
 ## Languages
 
